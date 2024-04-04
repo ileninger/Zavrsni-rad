@@ -1,0 +1,50 @@
+.desno {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .searchContainer {
+    display: flex;
+    align-items: center;
+  }
+.sredina{
+    text-align: center;
+}
+
+.lijevo{
+    text-align: left;
+}
+
+.akcije{
+    margin-top: 1.5rem;
+}
+
+
+.table td,
+.table th {
+  white-space: nowrap;
+}
+.gumb{
+    width: 100%;
+    margin-bottom: 5px;
+    background-color: rgb(230, 159, 112);
+    color: blue;
+}
+
+.akcije{
+    margin: top 1.5re;;
+}
+   
+.gumb:hover{
+    background-color: rgb(230, 159, 112);
+    color: blue;
+}
+
+.gumbObrisi{
+    color:red;
+}
+
+.searchInput:focus {
+    outline: none;
+}
