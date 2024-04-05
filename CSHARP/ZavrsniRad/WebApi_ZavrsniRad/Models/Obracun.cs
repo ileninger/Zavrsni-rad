@@ -5,7 +5,8 @@ namespace WebApi_ZavrsniRad.Models
 {
     public class Obracun:Entitet
     {
-
+        public string? Naziv { get; set; }
+        public string? DatumObracuna{ get; set; }
         /// <summary>
         /// Datum obračuna
         /// </summary>
@@ -23,7 +24,21 @@ namespace WebApi_ZavrsniRad.Models
         /// <summary>
         /// Porezna osnovica
         /// </summary>
-        public decimal? PoreznaOsnovica { get; set; }
+        public decimal? PoreznaOsnovicaPorezaNaDohodak { get; set; }
+
+        /// <summary>
+        /// Postotak koji se odvaja za prvi mirovinski stup
+        /// </summary>
+        public decimal? UdioZaPrviMirovinskiStup { get; set; }
+
+
+        /// <summary>
+        /// Postotak koji se odvaja za drugi mirovinski stup
+        /// </summary>
+        public decimal? UdioZaDrugiMirovinskiStup { get; set; }
+
+        public decimal? OsnovniOsobniOdbitak { get; set; }
+
 
         public decimal? NetoIznosZaIsplatu { get; set; }
 
@@ -31,3 +46,16 @@ namespace WebApi_ZavrsniRad.Models
 
     }
 }
+
+
+
+
+
+/// <summary>
+/// Postotak poreza na dohodak
+/// </summary>
+
+
+/// <summary>
+/// Porezna osnovica
+/// </summary>
