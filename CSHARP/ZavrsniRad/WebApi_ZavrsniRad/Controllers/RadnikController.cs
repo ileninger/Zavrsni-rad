@@ -217,6 +217,3 @@ namespace WebApi_ZavrsniRad.Controllers
     }
 }
 
-
-//OVO JE  KOD ZA ZAMJENU S ENTITETOM
-

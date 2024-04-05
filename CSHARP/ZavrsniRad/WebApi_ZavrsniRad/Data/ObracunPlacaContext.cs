@@ -29,7 +29,7 @@ namespace WebApi_ZavrsniRad.Data
 
         public DbSet<PodaciZaObracune> PodaciZaObracune { get; set; }
 
-        public DbSet<Placa> Place { get; set; }
+        public DbSet<Place> Place { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using WebApi_ZavrsniRad.Data;
 using WebApi_ZavrsniRad.Extensions;
 using WebApi_ZavrsniRad.Models;
@@ -45,12 +46,12 @@ namespace WebApi_ZavrsniRad.Controllers
             }
             try
             {
-                var place = _context.Place.ToList();
-                if (place == null || place.Count == 0)
+                var lista = _context.Place.ToList();
+                if (lista == null || lista.Count == 0)
                 {
                     return new EmptyResult();
                 }
-                return new JsonResult(place);
+                return new JsonResult(lista.MapPlacaReadList());
             }
             catch (Exception ex)
             {
@@ -69,12 +70,12 @@ namespace WebApi_ZavrsniRad.Controllers
             }
             try
             {
-                var place = _context.Place.Find(sifra);
-                if (place == null)
+                var placa = _context.Place.Find(sifra);
+                if (placa == null)
                 {
                     return new EmptyResult();
                 }
-                return new JsonResult(place);
+                return new JsonResult(placa.MapPlacaInsertUpdateToDTO());
             }
             catch (Exception ex)
             {
@@ -97,7 +98,7 @@ namespace WebApi_ZavrsniRad.Controllers
         /// <response code="503">Baza nedostupna iz razno raznih razloga</response> 
         /// <returns>Smjer s šifrom koju je dala baza</returns>
         [HttpPost]
-        public IActionResult Post(Placa entitet)
+        public IActionResult Post(PlacaDTOInsertUpdate entitet)
         {
             if (!ModelState.IsValid || entitet == null)
             {
@@ -105,10 +106,10 @@ namespace WebApi_ZavrsniRad.Controllers
             }
             try
             {
-
-                _context.Place.Add(entitet);
+                var place = entitet.MapPlacaInsertUpdateFromDTO(new Place());
+                _context.Place.Add(place);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, entitet);
+                return StatusCode(StatusCodes.Status201Created, place.MapPlacaReadToDTO());
             }
             catch (Exception ex)
             {
@@ -144,7 +145,7 @@ namespace WebApi_ZavrsniRad.Controllers
 
         [HttpPut]
         [Route("{sifra:int}")]
-        public IActionResult Put(int sifra, Placa entitet)
+        public IActionResult Put(int sifra, PlacaDTOInsertUpdate entitet)
         {
             if (sifra <= 0 || !ModelState.IsValid || entitet == null)
             {
@@ -168,14 +169,12 @@ namespace WebApi_ZavrsniRad.Controllers
 
                 // inače ovo rade mapperi
                 // za sada ručno
-                entitetIzBaze.NazivPlace = entitet.NazivPlace;
-                entitetIzBaze.BrojRadnihSati = entitet.BrojRadnihSati;
+                var placa = entitet.MapPlacaInsertUpdateFromDTO(entitetIzBaze);
 
-
-                _context.Place.Update(entitetIzBaze);
+                _context.Place.Update(placa);
                 _context.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, entitetIzBaze);
+                return StatusCode(StatusCodes.Status200OK, placa.MapPlacaReadToDTO());
             }
             catch (Exception ex)
             {
@@ -217,7 +216,4 @@ namespace WebApi_ZavrsniRad.Controllers
         }
     }
 }
-
-
-//OVO JE  KOD ZA ZAMJENU S ENTITETOM
 
