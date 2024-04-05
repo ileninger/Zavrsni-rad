@@ -10,9 +10,9 @@
     public record PodaciZaObracuneDTOInsertUpdate(decimal osnovniosobniodbitak, decimal postotakzaprvimirovinskistup,
     decimal postotakzadrugimirovinskistup, decimal stopaporezanadohodak);
 
-    public record  PlacaDTORead(int sifra,int brojradnihsati, DateTime datumpocetkaplace,DateTime datumkrajaplace);
+    public record  PlacaDTORead(int sifra,string nazivplace,int brojradnihsati, DateTime datumpocetkaplace,DateTime datumkrajaplace);
 
-    public record PlacaDTOInsertUpdate(int sifra, int brojradnihsati, DateTime datumpocetkaplace, DateTime datumkrajaplace);
+    public record PlacaDTOInsertUpdate(string nazivplace, int brojradnihsati, DateTime datumpocetkaplace, DateTime datumkrajaplace);
 
 
 
