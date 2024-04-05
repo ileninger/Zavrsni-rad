@@ -45,12 +45,12 @@ namespace WebApi_ZavrsniRad.Controllers
             }
             try
             {
-                var radnici = _context.PodaciZaObracune.ToList();
-                if (radnici == null || radnici.Count == 0)
+                var podacizaobracune = _context.PodaciZaObracune.ToList();
+                if (podacizaobracune == null || podacizaobracune.Count == 0)
                 {
-                    return new EmptyResult();
+                    return BadRequest("Ne postoje podaci o odbicima  u bazi");
                 }
-                return new JsonResult(radnici);
+                return new JsonResult(podacizaobracune.MapPodaciZaObracuneReadList());
             }
             catch (Exception ex)
             {
@@ -72,9 +72,9 @@ namespace WebApi_ZavrsniRad.Controllers
                 var podacizaobracune = _context.PodaciZaObracune.Find(sifra);
                 if (podacizaobracune == null)
                 {
-                    return new EmptyResult();
+                    return BadRequest("Smjer s šifrom " + sifra + " ne postoji");
                 }
-                return new JsonResult(podacizaobracune);
+                return new JsonResult(podacizaobracune.MapPodaciZaObracuneInsertUpdateToDTO());
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace WebApi_ZavrsniRad.Controllers
         /// <response code="503">Baza nedostupna iz razno raznih razloga</response> 
         /// <returns>Smjer s šifrom koju je dala baza</returns>
         [HttpPost]
-        public IActionResult Post(PodaciZaObracune entitet)
+        public IActionResult Post(PodaciZaObracuneDTOInsertUpdate entitet)
         {
             if (!ModelState.IsValid || entitet == null)
             {
@@ -106,9 +106,10 @@ namespace WebApi_ZavrsniRad.Controllers
             try
             {
 
-                _context.PodaciZaObracune.Add(entitet);
+                var podacizaobracune = entitet.MapPodaciZaObracuneInsertUpdateFromDTO(new PodaciZaObracune());
+                _context.PodaciZaObracune.Add(podacizaobracune);
                 _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, entitet);
+                return StatusCode(StatusCodes.Status201Created, podacizaobracune.MapPodaciZaObracuneReadToDTO());
             }
             catch (Exception ex)
             {
@@ -144,7 +145,7 @@ namespace WebApi_ZavrsniRad.Controllers
 
         [HttpPut]
         [Route("{sifra:int}")]
-        public IActionResult Put(int sifra, PodaciZaObracune entitet)
+        public IActionResult Put(int sifra, PodaciZaObracuneDTOInsertUpdate entitet)
         {
             if (sifra <= 0 || !ModelState.IsValid || entitet == null)
             {
@@ -161,7 +162,7 @@ namespace WebApi_ZavrsniRad.Controllers
 
                 if (entitetIzBaze == null)
                 {
-                    return StatusCode(StatusCodes.Status204NoContent, sifra);
+                    return BadRequest("Ne postoje smjer s šifrom " + sifra + " u bazi");
                 }
 
 
@@ -169,15 +170,13 @@ namespace WebApi_ZavrsniRad.Controllers
                 // inače ovo rade mapperi
                 // za sada ručno
                 //entitetIzBaze.BrojRadnihSati = entitet.BrojRadnihSati;
-                entitetIzBaze.OsnovniOsobniOdbitak = entitet.OsnovniOsobniOdbitak;
-                entitetIzBaze.StopaPorezaNaDohodak = entitet.StopaPorezaNaDohodak;
-                entitetIzBaze.PostotakZaPrviMirovinskiStup = entitet.PostotakZaPrviMirovinskiStup;
-                entitetIzBaze.PostotakZaDrugiMirovinskiStup = entitet.PostotakZaDrugiMirovinskiStup;
 
-                _context.PodaciZaObracune.Update(entitetIzBaze);
+                var podacizaobracun = entitet.MapPodaciZaObracuneInsertUpdateFromDTO(entitetIzBaze);
+   
+                _context.PodaciZaObracune.Update(podacizaobracun);
                 _context.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, entitetIzBaze);
+                return StatusCode(StatusCodes.Status200OK, podacizaobracun.MapPodaciZaObracuneReadToDTO());
             }
             catch (Exception ex)
             {
@@ -201,7 +200,7 @@ namespace WebApi_ZavrsniRad.Controllers
 
                 if (entitetIzbaze == null)
                 {
-                    return StatusCode(StatusCodes.Status204NoContent, sifra);
+                    return BadRequest("Ne postoji smjer s šifrom " + sifra + " u bazi"); 
                 }
 
                 _context.PodaciZaObracune.Remove(entitetIzbaze);
