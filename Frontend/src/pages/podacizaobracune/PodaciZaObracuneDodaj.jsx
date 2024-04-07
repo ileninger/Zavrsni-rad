@@ -28,6 +28,7 @@ export default function PodaciZaObracuneDodaj() {
 
         const podacizaobracune =
         {
+            naziv:podaci.get('naziv'),
             osnovniOsobniOdbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
             postotakZaPrviMirovinskiStup: parseFloat(podaci.get('postotakZaPrviMirovinskiStup')),
             postotakZaDrugiMirovinskiStup: parseFloat(podaci.get('postotakZaDrugiMirovinskiStup')),
@@ -43,6 +44,16 @@ export default function PodaciZaObracuneDodaj() {
     return (
         <Container>
             <Form onSubmit={handleSubmit}>
+
+            <Form.Group controlId="naziv">
+                    <Form.Label>Naziv podataka za obracun odbitaka</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="naziv"
+                        placeholder='Naziv podataka za obracun odbitaka'
+                    />
+                </Form.Group>
+
                 <Form.Group controlId="osnovniOsobniOdbitak">
                     <Form.Label>Osnovni osobni odbitak</Form.Label>
                     <Form.Control
@@ -51,6 +62,7 @@ export default function PodaciZaObracuneDodaj() {
                         placeholder='Osnovni osobni odbitak'
                     />
                 </Form.Group>
+
                 <Form.Group controlId="postotakZaPrviMirovinskiStup">
                     <Form.Label>Koeficijent za prvi mirovinski stup </Form.Label>
                     <Form.Control

@@ -9,6 +9,7 @@ namespace WebApi_ZavrsniRad.Models
     {
 
 
+        public string? Naziv{ get; set; }
         /// <summary>
         /// Osnovni osobni odbitak
         /// </summary>

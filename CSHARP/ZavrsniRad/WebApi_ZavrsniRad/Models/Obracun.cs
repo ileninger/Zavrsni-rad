@@ -6,7 +6,6 @@ namespace WebApi_ZavrsniRad.Models
     public class Obracun:Entitet
     {
         public string? Naziv { get; set; }
-        public string? DatumObracuna{ get; set; }
         /// <summary>
         /// Datum obračuna
         /// </summary>

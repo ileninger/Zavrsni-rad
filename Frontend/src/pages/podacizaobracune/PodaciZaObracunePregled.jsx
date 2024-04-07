@@ -44,19 +44,20 @@ export default function PodaciZaObracunePregled (){
 
     return (
         <Container>
-{/* 
-                    <Link to={RoutesNames.RADNICI_DODAJ} className="btn gumb">
+ 
+                    <Link to={RoutesNames.PODACIZAOBRACUNE_DODAJ} className="btn gumb">
                     <FaAddressCard 
                         size='30'
                         className="lijevo"
                     />
-                        Dodaj novog ranika
-                    </Link> */}
+                        Dodaj nove podatke za proračun odbitaka
+                    </Link>
         
             <Table striped bordered hover responsive className="table">
                 <thead>
                     <tr>
 
+                        <th className="sredina">Naziv podataka za obracun odbitaka</th>
                         <th className="sredina">Osnovni osobni odbitak</th>
                         <th className="sredina">Udio za prvi mirovinski stup</th>
                         <th className="sredina">Udio za drugi mirovinski stup</th>
@@ -68,12 +69,14 @@ export default function PodaciZaObracunePregled (){
                     {podacizaobracune && podacizaobracune.map((podacizaobracune,index)=>(
                         <tr key={index}>
 
-                            <td className={podacizaobracune.osnovniOsobniOdbitak==null ? 'sredina' : 'sredina'}>
-                                {podacizaobracune.osnovniOsobniOdbitak==null 
+                            <td className="sredina">{podacizaobracune.naziv}</td>
+
+                            <td className={podacizaobracune.osnovniosobniodbitak==null ? 'sredina' : 'sredina'}>
+                                {podacizaobracune.osnovniosobniodbitak==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={podacizaobracune.osnovniOsobniOdbitak}
+                                    value={podacizaobracune.osnovniosobniodbitak}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','
@@ -83,12 +86,12 @@ export default function PodaciZaObracunePregled (){
                                     />
                                 } 
                             </td>
-                            <td className={podacizaobracune.postotakZaPrviMirovinskiStup==null ? 'sredina' : 'sredina'}>
-                                {podacizaobracune.postotakZaPrviMirovinskiStup==null 
+                            <td className={podacizaobracune.postotakzaprvimirovinskistup==null ? 'sredina' : 'sredina'}>
+                                {podacizaobracune.postotakzaprvimirovinskistup==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={podacizaobracune.postotakZaPrviMirovinskiStup}
+                                    value={podacizaobracune.postotakzaprvimirovinskistup}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','
@@ -98,12 +101,12 @@ export default function PodaciZaObracunePregled (){
                                     />
                                 } 
                             </td>
-                            <td className={podacizaobracune.postotakZaDrugiMirovinskiStup==null ? 'sredina' : 'sredina'}>
-                                {podacizaobracune.postotakZaDrugiMirovinskiStup==null 
+                            <td className={podacizaobracune.postotakzadrugimirovinskistup==null ? 'sredina' : 'sredina'}>
+                                {podacizaobracune.postotakzadrugimirovinskistup==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={podacizaobracune.postotakZaDrugiMirovinskiStup}
+                                    value={podacizaobracune.postotakzadrugimirovinskistup}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','
@@ -113,12 +116,12 @@ export default function PodaciZaObracunePregled (){
                                     />
                                 } 
                             </td>
-                            <td className={podacizaobracune.stopaPorezaNaDohodak==null ? 'sredina' : 'sredina'}>
-                                {podacizaobracune.stopaPorezaNaDohodak==null 
+                            <td className={podacizaobracune.stopaporezanadohodak==null ? 'sredina' : 'sredina'}>
+                                {podacizaobracune.stopaporezanadohodak==null 
                                 ? 'Nije definirano'
                                 :
                                     <NumericFormat 
-                                    value={podacizaobracune.stopaPorezaNaDohodak}
+                                    value={podacizaobracune.stopaporezanadohodak}
                                     displayType={'text'}
                                     thousandSeparator='.'
                                     decimalSeparator=','

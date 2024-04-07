@@ -45,10 +45,11 @@ export default function PodaciZaObracunePromjeni() {
 
         const podacizaobracune =
         {
-            osnovniOsobniOdbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
-            postotakZaPrviMirovinskiStup: parseFloat(podaci.get('postotakZaPrviMirovinskiStup')),
-            postotakZaDrugiMirovinskiStup: parseFloat(podaci.get('postotakZaDrugiMirovinskiStup')),
-            stopaPorezaNaDohodak: parseFloat(podaci.get('stopaPorezaNaDohodak')),
+            naziv:podaci.get('naziv'),
+            osnovniOsobniOdbitak: parseFloat(podaci.get('osnovniosobniodbitak')),
+            postotakZaPrviMirovinskiStup: parseFloat(podaci.get('postotakzaprvimirovinskistup')),
+            postotakZaDrugiMirovinskiStup: parseFloat(podaci.get('postotakzadrugimirovinskistup')),
+            stopaPorezaNaDohodak: parseFloat(podaci.get('stopaporezanadohodak')),
         };
 
         //console.log(JSON.stringify(smjer));
@@ -59,37 +60,49 @@ export default function PodaciZaObracunePromjeni() {
     return (
         <Container>
             <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="osnovniOsobniOdbitak">
+
+                
+            <Form.Group controlId="naziv">
+                    <Form.Label>Naziv podataka za obracun odbitaka</Form.Label>
+                    <Form.Control
+                        type="text"
+                        defaultValue={podacizaobracune.naziv}
+                        name="naziv"
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="osnovniosobniodbitak">
                     <Form.Label>Osnovni osobni odbitak</Form.Label>
                     <Form.Control
                         type="text"
-                        defaultValue={podacizaobracune.osnovniOsobniOdbitak}
-                        name="osnovniOsobniOdbitak"
+                        defaultValue={podacizaobracune.osnovniosobniodbitak}
+                        name="osnovniosobniodbitak"
                     />
                 </Form.Group>
-                <Form.Group controlId="postotakZaPrviMirovinskiStup">
+
+                <Form.Group controlId="postotakzaprvimirovinskistup">
                     <Form.Label>Postotak za prvi mirovinski stup </Form.Label>
                     <Form.Control
                         type="text"
-                        name="postotakZaPrviMirovinskiStup"
-                        defaultValue={podacizaobracune.postotakZaPrviMirovinskiStup}
+                        name="postotakzaprvimirovinskistup"
+                        defaultValue={podacizaobracune.postotakzaprvimirovinskistup}
 
                     />
                 </Form.Group>
-                <Form.Group controlId="postotakZaDrugiMirovinskiStup">
+                <Form.Group controlId="postotakzadrugimirovinskistup">
                     <Form.Label>Postotak za drugi mirovinski stup </Form.Label>
                     <Form.Control
                         type="text"
-                        name="postotakZaDrugiMirovinskiStup"
-                        defaultValue={podacizaobracune.postotakZaDrugiMirovinskiStup}
+                        name="postotakzadrugimirovinskistup"
+                        defaultValue={podacizaobracune.postotakzadrugimirovinskistup}
                     />
                 </Form.Group>
-                <Form.Group controlId="stopaPorezaNaDohodak">
+                <Form.Group controlId="stopaporezanadohodak">
                     <Form.Label>Stopa poreza na dohodak </Form.Label>
                     <Form.Control
                         type="text"
-                        name="stopaPorezaNaDohodak"
-                        defaultValue={podacizaobracune.postotakZaDrugiMirovinskiStup}
+                        name="stopaporezanadohodak"
+                        defaultValue={podacizaobracune.stopaporezanadohodak}
                     />
                 </Form.Group>
                 <Row className="akcije">

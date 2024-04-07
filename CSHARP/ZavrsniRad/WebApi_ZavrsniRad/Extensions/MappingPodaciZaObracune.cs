@@ -37,6 +37,7 @@ namespace WebApi_ZavrsniRad.Extensions
         public static PodaciZaObracune MapPodaciZaObracuneInsertUpdateFromDTO(
             this PodaciZaObracuneDTOInsertUpdate dto, PodaciZaObracune entitet)
         {
+            entitet.Naziv = dto.naziv;
             entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
             entitet.PostotakZaPrviMirovinskiStup = dto.postotakzaprvimirovinskistup;
             entitet.PostotakZaDrugiMirovinskiStup = dto.postotakzadrugimirovinskistup;
