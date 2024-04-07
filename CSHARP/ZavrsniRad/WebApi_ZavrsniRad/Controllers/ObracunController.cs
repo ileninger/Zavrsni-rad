@@ -55,7 +55,7 @@ namespace WebApi_ZavrsniRad.Controllers
                 {
                     return BadRequest("Ne postoje obračun u bazi");
                 }
-                return new JsonResult(lista.MapObracunReadList);
+                return new JsonResult(lista.MapObracunReadList());
             }
             catch (Exception ex)
             {
