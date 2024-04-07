@@ -10,13 +10,13 @@ namespace WebApi_ZavrsniRad.Models
         /// <summary>
         /// Datum obračuna
         /// </summary>
-        [ForeignKey("Radnik")]
+        [ForeignKey("radnik")]
         public Radnik? Radnik { get; set; }
         
-        [ForeignKey("PodaciZaObracun")]
+        [ForeignKey("podaciZaObracun")]
         public PodaciZaObracune PodaciZaObracun { get; set; }
         
-        [ForeignKey("Placa")]
+        [ForeignKey("placa")]
 
         public Place Placa { get; set; }
         public DateTime? DatumObracuna { get; set; }
@@ -58,13 +58,3 @@ namespace WebApi_ZavrsniRad.Models
 
 
 
-
-
-/// <summary>
-/// Postotak poreza na dohodak
-/// </summary>
-
-
-/// <summary>
-/// Porezna osnovica
-/// </summary>
