@@ -6,9 +6,19 @@ namespace WebApi_ZavrsniRad.Models
     public class Obracun:Entitet
     {
         public string? Naziv { get; set; }
+
         /// <summary>
         /// Datum obračuna
         /// </summary>
+        [ForeignKey("Radnik")]
+        public Radnik? Radnik { get; set; }
+        
+        [ForeignKey("PodaciZaObracun")]
+        public PodaciZaObracune PodaciZaObracun { get; set; }
+        
+        [ForeignKey("Placa")]
+
+        public Place Placa { get; set; }
         public DateTime? DatumObracuna { get; set; }
         /// <summary>
         /// Prezime radnika u bazi
@@ -26,13 +36,13 @@ namespace WebApi_ZavrsniRad.Models
         public decimal? PoreznaOsnovicaPorezaNaDohodak { get; set; }
 
         /// <summary>
-        /// Postotak koji se odvaja za prvi mirovinski stup
+        /// Udio koji se odvaja za prvi mirovinski stup
         /// </summary>
         public decimal? UdioZaPrviMirovinskiStup { get; set; }
 
 
         /// <summary>
-        /// Postotak koji se odvaja za drugi mirovinski stup
+        /// Udio koji se odvaja za drugi mirovinski stup
         /// </summary>
         public decimal? UdioZaDrugiMirovinskiStup { get; set; }
 

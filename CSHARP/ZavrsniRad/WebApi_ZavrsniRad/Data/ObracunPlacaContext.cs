@@ -25,20 +25,20 @@ namespace WebApi_ZavrsniRad.Data
 
         public DbSet<Radnik> Radnici { get; set; }
 
-        //public DbSet<Obracun> Obracuni { get; set; }
-
         public DbSet<PodaciZaObracune> PodaciZaObracune { get; set; }
 
         public DbSet<Place> Place { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
+        public DbSet <Obracun> Obracuni { get; set; }
 
-        //    modelBuilder.Entity<PodaciZaObracune>().HasOne(g => g.Radnik);
-        //    //modelBuilder.Entity<PodaciZaObracune>().HasOne(p => p.Obracuni);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
+            modelBuilder.Entity<Obracun>().HasOne(g => g.Radnik);
+            modelBuilder.Entity<Obracun>().HasOne(g => g.PodaciZaObracun);
+            modelBuilder.Entity<Obracun>().HasOne(g => g.Placa);
 
-        //}
+        }
 
 
 
