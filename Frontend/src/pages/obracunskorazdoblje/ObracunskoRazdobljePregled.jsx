@@ -11,79 +11,85 @@ import { BiSolidUserDetail } from "react-icons/bi";
 
 import { RoutesNames } from "../../constants";
 import moment from "moment/moment";
+import PlacaService from "../../services/ObracunskoRazdobljeService";
+import ObračunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
 
 
-export default function RadniciPregled (){
+export default function ObracunskoRazdobljePregled (){
 
-    const [radnici,setRadnici] = useState ();
+    const [obracunskorazdoblje,setObracunskoRazdoblje] = useState ();
     const navigate = useNavigate();
 
-    async function dohvatiRadnike (){
-        await RadnikService.getRadnici()
+    async function dohvatiObracunskoRazdoblje (){
+        await ObračunskoRazdobljeService.get()
         .then((res)=>{
-            setRadnici(res.data);
+            setObracunskoRazdoblje(res.data);
         })
         .catch((e)=>{
             alert(e);
         });
     } 
 
-    async function obrisiRadnika(sifra){
-        const odgovor = await RadnikService.obrisiRadnika(sifra);
+    async function obrisi(sifra){
+        const odgovor = await ObračunskoRazdobljeService.obrisi(sifra);
         if (odgovor.ok){
             alert(odgovor.poruka.data.poruka)
-            dohvatiRadnike();
+            dohvatiObracunskoRazdoblje();
         }
 
     }
 
     useEffect(()=>{
-        dohvatiRadnike();
+        dohvatiObracunskoRazdoblje();
     },[]);
 
     return (
         <Container>
 
-                    <Link to={RoutesNames.RADNICI_DODAJ} className="btn gumb">
+                    {/* <Link to={RoutesNames.RADNICI_DODAJ} className="btn gumb">
                     <FaAddressCard 
                         size='30'
                         className="lijevo"
                     />
                         Dodaj novog ranika
                     </Link>
-        
+         */}
             <Table striped bordered hover responsive className="table">
                 <thead>
                     <tr>
-                        <th>Ime</th>
-                        <th>Prezime</th>
-                        <th className="sredina">OiB</th>
-                        <th className="sredina">Detaljnije</th>
+                        <th>Naziv Plaće</th>
+                        <th>Početak obračunskog razdoblja</th>
+                        <th className="sredina">Kraj obračunskog razdoblja</th>
+                        <th className="sredina">Broj radnih sati </th>
                         <th className="sredina">Akcija</th>
                     </tr>
                 </thead>
+
+
                 <tbody>
-                    {radnici && radnici.map((radnik,index)=>(
+                    {obracunskorazdoblje && obracunskorazdoblje.map((obracunskorazdoblje,index)=>(
                         <tr key={index}>
-                            <td className="lijevo">{radnik.ime}</td>
-                            <td className="lijevo">{radnik.prezime}</td>
-                            <td className="sredina">{radnik.oib}</td>
-                            <td className="sredina">
-                                <Button
-                                    variant="normal"
-                                    onClick={()=>{navigate(`/radnici/${radnik.sifra}`)}}>
-                                    <BiSolidUserDetail  
-                                     color="blue"
-                                    
-                                    size={25} />
-                                    Detaljnije
-                                </Button>
-                            </td>
+                            <td className="sredina">{obracunskorazdoblje.nazivplace}</td>
 
                             <td className="sredina">
+                                {
+                                    obracunskorazdoblje.datumpocetkaplace = null?'Nije uneseno':
+                                    moment.utc(obracunskorazdoblje.datumpocetkaplace).format('DD.MM.YYYY')
+                                }
+                            </td>
+                            <td className="sredina">
+                                {
+                                    obracunskorazdoblje.datumkrajaplace = null?'Nije uneseno':
+                                    moment.utc(obracunskorazdoblje.datumkrajaplace).format('DD.MM.YYYY')
+                                }
+                            </td>
+                            <td className="sredina">{obracunskorazdoblje.brojradnihsati}</td>
+
+                        
+                            <td className="sredina">
                                 <Button
                                     variant="normal"
-                                    onClick={()=>{navigate(`/radnici/${radnik.sifra}`)}}>
+                                    onClick={()=>{navigate(`/obracunskorazdoblje/${obracunskorazdoblje.sifra}`)}}>
                                     <FaUserEdit 
                                      color="blue"
                                     
@@ -92,7 +98,7 @@ export default function RadniciPregled (){
                                      &nbsp;&nbsp;&nbsp;
                                 <Button
                                     variant="normal"
-                                    onClick={()=>obrisiRadnika(radnik.sifra)}
+                                    onClick={()=>obrisi(obracunskorazdoblje.sifra)}
                                 >
        
                                     <FaUserMinus 

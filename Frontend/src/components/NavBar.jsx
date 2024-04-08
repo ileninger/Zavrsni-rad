@@ -25,7 +25,9 @@ function NavBar() {
         <Nav className="me-auto">
             <NavDropdown title="Plače" id="basic-nav-dropdown">
               <NavDropdown.Item>Izradin novu plaču </NavDropdown.Item>
-              <NavDropdown.Item>Prikaži plače</NavDropdown.Item>
+              <NavDropdown.Item
+                 onClick={()=>navigate(RoutesNames.OBRACUNSKORAZDOBLJE_PREGLED)}
+              >Prikaži plače</NavDropdown.Item>
 
             </NavDropdown>
           </Nav>
@@ -54,6 +56,22 @@ function NavBar() {
               >Dodaj nove podatake za proračun odbitaka</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Nav className="me-auto">
+            <NavDropdown title="Obračunska razdoblja" id="basic-nav-dropdown">
+              <NavDropdown.Item 
+                onClick={()=>navigate(RoutesNames.OBRACUNSKORAZDOBLJE_PREGLED)}
+              >
+                Pregled podataka za proračun odbitaka
+            </NavDropdown.Item>
+              <NavDropdown.Item
+                onClick={()=>navigate(RoutesNames.OBRACUNSKORAZDOBLJE_DODAJ)}
+              
+              >Dodaj nove podatake za proračun odbitaka</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+
+
+
         </Navbar.Collapse>
         <Navbar.Collapse className='justify-content-end'>
             <Nav.Link target ='_blank' href='https://ileninger-001-site1.anytempurl.com/swagger/index.html'>API Dokumentacija</Nav.Link>
