@@ -19,7 +19,13 @@ namespace WebApi_ZavrsniRad.Models
 
 
     public record ObracunDTORead(int sifra, string naziv,
-        string? radnikImePrezime, string? podaciZaObracunNaziv, string? placaNaziv,
+        string? radnikImePrezime,decimal? radnikCijenaRadnogSata, decimal? radnikKoecijentRadnogMjesta,
+        
+        string? podaciZaObracunNaziv, decimal? podaciZaObracunOsnovniOsobniOdbitak, decimal? podaciZaObracunPostotakZaPrviMirovinskiStup, 
+        decimal? podaciZaObracunPostotakZaDrugiMirovinskiStup, decimal? podaciZaObracunStopaPorezaNaDohodak,
+        
+        string? placaNaziv,decimal? brojRadnihSati,
+
         DateTime datumObracuna, decimal brutoI, decimal brutoII, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
         decimal udiozaprvimirovinskistup, decimal udiozadrugimirovinskistup, decimal netoiznoszaisplatu)
     {

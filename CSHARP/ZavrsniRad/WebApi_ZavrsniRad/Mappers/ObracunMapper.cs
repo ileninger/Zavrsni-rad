@@ -17,9 +17,18 @@ namespace WebApi_ZavrsniRad.Mappers
                     entitet.Sifra,
                      entitet.Naziv,
 
-                     entitet.Radnik == null ? "" : (entitet.Radnik.Ime + " " + entitet.Radnik.Prezime).Trim(),
-                     entitet.PodaciZaObracun == null ? "" : entitet.PodaciZaObracun.Naziv,
-                     entitet.Placa == null ? "" : entitet.Placa.NazivPlace,
+                     entitet.Radnik == null ? "" : (entitet.Radnik.Ime + "" + 
+                                                    entitet.Radnik.Prezime + "" +
+                                                    entitet.Radnik.CijenaRadnogSata + "" +
+                                                    entitet.Radnik.KoeficijentRadnogMjesta).Trim(),
+
+                     entitet.PodaciZaObracun == null ? "" : (entitet.PodaciZaObracun.Naziv + "" +
+                                                             entitet.PodaciZaObracun.OsnovniOsobniOdbitak + "" +
+                                                             entitet.PodaciZaObracun.PostotakZaPrviMirovinskiStup + "" +
+                                                             entitet.PodaciZaObracun.PostotakZaDrugiMirovinskiStup + "" + 
+                                                             entitet.PodaciZaObracun.StopaPorezaNaDohodak).Trim(),
+
+                     entitet.Placa == null ? "" : (entitet.Placa.NazivPlace + " " + entitet.Placa.BrojRadnihSati),
                      entitet.DatumObracuna ?? DateTime.MinValue,
                      entitet.Bruto_I ?? 0,
                      entitet.Bruto_II ?? 0,
@@ -57,7 +66,7 @@ namespace WebApi_ZavrsniRad.Mappers
                         entitet.OsnovniOsobniOdbitak ?? 0,
                         entitet.UdioZaDrugiMirovinskiStup ?? 0,
                         entitet.UdioZaDrugiMirovinskiStup ?? 0,
-                        entitet.NetoIznosZaIsplatu ?? 0
+                        entitet. NetoIznosZaIsplatu ?? 0
                      ));
              })
              );
