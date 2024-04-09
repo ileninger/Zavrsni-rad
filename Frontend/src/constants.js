@@ -13,6 +13,10 @@ export const RoutesNames = {
     OBRACUNSKORAZDOBLJE_DODAJ:'/obracunskorazdoblje/dodaj',
     OBRACUNSKORAZDOBLJE_PROMJENI:'/obracunskorazdoblje/:sifra',
 
+    PLACA_PREGLED:'/placa',
+    PLACA_DODAJ:'/placa/dodaj',
+
+
 
 
 };

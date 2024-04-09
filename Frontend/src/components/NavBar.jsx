@@ -24,9 +24,12 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
             <NavDropdown title="Plače" id="basic-nav-dropdown">
-              <NavDropdown.Item>Izradin novu plaču </NavDropdown.Item>
               <NavDropdown.Item
-                 onClick={()=>navigate(RoutesNames.OBRACUNSKORAZDOBLJE_PREGLED)}
+                onClick={()=>navigate(RoutesNames.PLACA_DODAJ)}
+              
+              >Izradin novu plaču </NavDropdown.Item>
+              <NavDropdown.Item
+                 onClick={()=>navigate(RoutesNames.PLACA_PREGLED)}
               >Prikaži plače</NavDropdown.Item>
 
             </NavDropdown>

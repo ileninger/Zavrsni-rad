@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\ivanl\Documents\GitHub\Zavrsni-rad\CSHARP\ZavrsniRad\WebApi_ZavrsniRad\Properties\PublishProfiles\ileninger-001-site1 - FTP.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\ileni\OneDrive\Dokumenti\GitHub\Zavrsni-WP2---ObracunPlace\Zavrsni-rad\CSHARP\ZavrsniRad\WebApi_ZavrsniRad\Properties\PublishProfiles\ileninger-001-site1 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

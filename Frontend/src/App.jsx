@@ -20,6 +20,11 @@ import ObracunskoRazdobljePregled from "./pages/obracunskorazdoblje/ObracunskoRa
 import ObracunskoRazdobljeDodaj from "./pages/obracunskorazdoblje/ObracunskoRazdobljeDodaj"
 import ObracunskoRazdobljePromjeni from "./pages/obracunskorazdoblje/ObracunskoRazdobljePromjeni"
 
+
+import PlacaPregled from "./pages/placa/PlacaPregled"
+import PlacaDodaj from "./pages/placa/PlacaDodaj"
+
+
 function App() {
 
   return (
@@ -39,6 +44,10 @@ function App() {
         <Route path={RoutesNames.OBRACUNSKORAZDOBLJE_PREGLED} element ={<ObracunskoRazdobljePregled/>} />
         <Route path={RoutesNames.OBRACUNSKORAZDOBLJE_DODAJ} element ={<ObracunskoRazdobljeDodaj/>} />
         <Route path={RoutesNames.OBRACUNSKORAZDOBLJE_PROMJENI} element ={<ObracunskoRazdobljePromjeni/>} />
+
+        <Route path={RoutesNames.PLACA_PREGLED} element ={<PlacaPregled/>} />
+        <Route path={RoutesNames.PLACA_DODAJ} element ={<PlacaDodaj/>} />
+
 
 
       </Routes>
