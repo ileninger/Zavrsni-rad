@@ -37,6 +37,7 @@ namespace WebApi_ZavrsniRad.Extensions
         public static Place MapPlacaInsertUpdateFromDTO(
             this PlacaDTOInsertUpdate dto, Place entitet)
         {
+            entitet.NazivPlace = dto.nazivplace;
             entitet.BrojRadnihSati = dto.brojradnihsati;
             entitet.DatumPocetkaPlace = dto.datumpocetkaplace;
             entitet.DatumKrajaPlace = dto.datumkrajaplace;
