@@ -18,8 +18,8 @@ namespace WebApi_ZavrsniRad.Models
     public record PlacaDTOInsertUpdate(string nazivplace, int brojradnihsati, DateTime datumpocetkaplace, DateTime datumkrajaplace);
 
 
-    public record ObracunDTORead(int sifra, string naziv, 
-        string? radnikImePrezime,string? podaciZaObracunNaziv, string? placaNaziv,
+    public record ObracunDTORead(int sifra, string naziv,
+        string? radnikImePrezime, string? podaciZaObracunNaziv, string? placaNaziv,
         DateTime datumObracuna, decimal brutoI, decimal brutoII, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
         decimal udiozaprvimirovinskistup, decimal udiozadrugimirovinskistup, decimal netoiznoszaisplatu)
     {

@@ -14,13 +14,12 @@ namespace WebApi_ZavrsniRad.Mappers
                 c.CreateMap<Obracun, ObracunDTORead>()
                 .ConstructUsing(entitet =>
                  new ObracunDTORead(
-                     entitet.Sifra,
+                    entitet.Sifra,
                      entitet.Naziv,
-                     
+
                      entitet.Radnik == null ? "" : (entitet.Radnik.Ime + " " + entitet.Radnik.Prezime).Trim(),
                      entitet.PodaciZaObracun == null ? "" : entitet.PodaciZaObracun.Naziv,
-                     entitet.Placa==null ? "" : entitet.Placa.NazivPlace,
-
+                     entitet.Placa == null ? "" : entitet.Placa.NazivPlace,
                      entitet.DatumObracuna ?? DateTime.MinValue,
                      entitet.Bruto_I ?? 0,
                      entitet.Bruto_II ?? 0,
