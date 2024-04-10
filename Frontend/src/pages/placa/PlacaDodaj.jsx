@@ -1,31 +1,29 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { RiArrowGoBackFill } from "react-icons/ri"
-import { RiArrowGoForwardFill } from "react-icons/ri";
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import moment from "moment";
 
-import { RoutesNames } from "../../constants";
 
-
+		
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
 import RadnikService from "../../services/RadnikService";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
+import { RoutesNames } from '../../constants';
+
 
 
 export default function PlacaDodaj() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [radnici, setRadnici] = useState([]);
+  const [radnikSifra, setRadnikSifra] = useState(0);
 
-    const [radnici,setRadnici] = useState([]);
-    const [radnikSifra, setRadnikSifra] = useState(0);
+  const [obracunskoRazdoblje, setObracunskoRazdoblje] = useState([]);
+  const [obracunskoRazdobljeSifra, setObracunskoRazdobljeSifra] = useState(0);
 
-    const [podacizaobracune,setPodaciZaObracune] = useState([]);
-    const [podacizaobracuneSifra, setPodaciZaObracuneSifra] = useState(0);
+  const [podacizaobracun, setPodaciZaObracun] = useState([]);
+  const [podacizaobracunSifra, setPodaciZaObracunSifra] = useState(0);
 
-    const [obracunskorazdoblje,setObracunskoRazdoblje] = useState([]);
-    const [obracunskorazdobljeSifra,setObracunskoRazdobljeSifra] = useState(0);
-
-    
   async function dohvatiRadnike(){
     await RadnikService.getRadnici().
       then((odgovor)=>{
@@ -34,137 +32,155 @@ export default function PlacaDodaj() {
       });
   }
 
-  async function dohvatiPodatkeZaObracun(){
-    await PodaciZaObracuneService.getPodaciZaObracune().
-      then((odgovor)=>{
-        setPodaciZaObracune(odgovor.data);
-        setPodaciZaObracuneSifra(odgovor.data[0].sifra);
-      });
-  }
-
-  
-  async function dohvatiObracunskaRazdoblja(){
+  async function dohvatiObracunskoRazdoblje(){
     await ObracunskoRazdobljeService.get().
-      then((odgovor)=>{
-        setObracunskoRazdoblje(odgovor.data);
-        setObracunskoRazdobljeSifra(odgovor.data[0].sifra);
+      then((o)=>{
+        setObracunskoRazdoblje(o.data);
+        setObracunskoRazdobljeSifra(o.data[0].sifra);
       });
   }
 
-  
+  async function dohvatiPodatkeZaObracun(){
+    await ObracunskoRazdobljeService.get().
+      then((p)=>{
+        setPodaciZaObracun(p.data);
+        setPodaciZaObracunSifra(o.data[0].sifra);
+      });
+  }
+
   async function ucitaj(){
     await dohvatiRadnike();
-    await dohvatiPodatkeZaObracun();
-    await dohvatiObracunskaRazdoblja();
+    //await dohvatiObracunskoRazdoblje();
+    //await dohvatiPodatkeZaObracun();
   }
 
   useEffect(()=>{
     ucitaj();
   },[]);
 
+  async function dodaj(e) {
+    //console.log(e);
 
-
-
-
-
-
-
-
-
-    async function dodaj(e) {
-        const odgovor = await Service.dodaj(e)
-        if (odgovor.ok) {
-            navigate(RoutesNames.PLACA_PREGLED);
-        } else {
-            console.log(odgovor);
-            alert(odgovor.poruka);
-        }
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        const podaci = new FormData(e.target);
-        //console.log(podaci.get('naziv'));
-
-        dodaj 
-        ({
-            naziv:podaci.get('naziv'),
-            radnikSifra:parseInt(podaci.get('radnikSifra')),
-            podacizaobracunSifra:parseInt(podaci.get('podacizaobracunSifra')),
-            placaSifra:parseInt(podaci.get('placaSifra')),
-            datumobracuna:datumobracuna,
-            brutoI:parseFloat(podaci.get('brutoI')),
-            brutoII:parseFloat(podaci.get('brutoII')),
-            poreznaosnovicaporezanadohodak:parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
-            osnovniosobniodbitak:parseFloat(podaci.get('osnovniOsobniOdbitak')),
-            udiozaprvimirovinskistup:parseFloat(podaci.get('udiozaprvimirovinskistup')),
-            udiozadrugimirovinskistup:parseFloat(podaci.get('udiozadrugimirovinskistup')),
-            netoiznoszaisplatu:parseFloat(podaci.get('netoiznoszaisplatu')),
-        });
-
-        //console.log(JSON.stringify(smjer));
-        dodajPodatkeZaObracunOdbitaka(podacizaobracune);
-
-    }
-    function oibRadnika(){
-        for(let i=0;i<radnici.length;i++){
-          const e = radnici[i];
-          if(e.sifra==radnikSifra){
-            return e.email;
-          }
-        }
+    const odgovor = await Service.dodaj(e);
+    if (odgovor.ok) {
+      navigate(RoutesNames.PLACA_PREGLED);
+    } else {
+      alert(odgovor.poruka.errors);
     }
     
+  }
 
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    return (
-        <Container>
-            <Form onSubmit={handleSubmit}>
+    const podaci = new FormData(e.target);
 
-            <Form.Group controlId="naziv">
-                    <Form.Label>Naziv plače</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="naziv"
-                        placeholder='Naziv plače'
-                    />
-            </Form.Group>
-                <Form.Group className='mb-4' controlId='radnik'>
-                    <Form.Label>Radnik</Form.Label>
-                    <Form.Select multiple={true}
-                        onChange={(e) => { setRadnikSifra(e.target.value) }}
-                    >
-                        {radnici && radnici.map((s, index) => (
-                            <option key={index} value={s.sifra}>
-                                {s.radnikIme} {s.radnikPrezime}
-                            </option>
-                        ))}
-                    </Form.Select>
-            </Form.Group>
+    //console.log(podaci.get('datum'));
+    //console.log(podaci.get('vrijeme'));
 
-                
+    // if(podaci.get('datum')=='' && podaci.get('vrijeme')!=''){
+    //   alert('Ako postavljate vrijeme morate i datum');
+    //   return;
+    // }
+    // let datumpocetka='';
+    // if(podaci.get('datum')!='' && podaci.get('vrijeme')==''){
+    //   datumpocetka = podaci.get('datum') + 'T00:00:00.000Z';
+    // }else{
+    //   datumpocetka = podaci.get('datum') + 'T' + podaci.get('vrijeme') + ':00.000Z';
+    // }
 
 
 
-                <Row className="akcije">
-                    <Col>
-                        <Link
-                            className="btn btn-danger"
-                            to={RoutesNames.PODACIZAOBRACUNE_PREGLED}>
-                            <RiArrowGoBackFill size={15} />
-                            Odustani
-                        </Link>
-                    </Col>
-                    <Col>
-                        <Button
-                            variant="primary"
-                            type="submit">
-                            <RiArrowGoForwardFill size={15} />
-                            Dodaj nove podatke  za obračun
-                        </Button>
-                    </Col>
-                </Row>
-            </Form>
-        </Container>
-    );
+    
+    //console.log(datumpocetka);
+
+    dodaj({
+        naziv:podaci.get('naziv'),
+        radnikSifra:parseInt(podaci.get('radnikSifra')),
+        podacizaobracunSifra:parseInt(podaci.get('podacizaobracunSifra')),
+        placaSifra:parseInt(podaci.get('placaSifra')),
+        //datumobracuna:datumobracuna,
+        brutoI:parseFloat(podaci.get('brutoI')),
+        brutoII:parseFloat(podaci.get('brutoII')),
+        poreznaosnovicaporezanadohodak:parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
+        osnovniosobniodbitak:parseFloat(podaci.get('osnovniOsobniOdbitak')),
+        udiozaprvimirovinskistup:parseFloat(podaci.get('udiozaprvimirovinskistup')),
+        udiozadrugimirovinskistup:parseFloat(podaci.get('udiozadrugimirovinskistup')),
+        netoiznoszaisplatu:parseFloat(podaci.get('netoiznoszaisplatu')),
+    });
+  }
+
+
+  return (
+    <Container className='mt-4'>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className='mb-3' controlId='naziv'>
+          <Form.Label>Naziv</Form.Label>
+          <Form.Control
+            type='text'
+            name='naziv'
+            placeholder='Naziv plače'
+            maxLength={255}
+          />
+        </Form.Group>
+
+        {/* <Form.Group className='mb-3' controlId='datum'>
+          <Form.Label>Datum</Form.Label>
+          <Form.Control
+            type='date'
+            name='datum'
+          />
+        </Form.Group>
+
+        <Form.Group className='mb-3' controlId='vrijeme'>
+          <Form.Label>Vrijeme</Form.Label>
+          <Form.Control
+            type='time'
+            name='vrijeme'
+          />
+        </Form.Group> */}
+
+        {/* <Form.Group className='mb-3' controlId='smjer'>
+          <Form.Label>Smjer</Form.Label>
+          <Form.Select multiple={true}
+          onChange={(e)=>{setSmjerSifra(e.target.value)}}
+          >
+          {smjerovi && smjerovi.map((s,index)=>(
+            <option key={index} value={s.sifra}>
+              {s.naziv}
+            </option>
+          ))}
+          </Form.Select>
+        </Form.Group> */}
+<Form.Group className='mb-3' controlId='radnik'>
+  <Form.Label>Radnik</Form.Label>
+  <Form.Select onChange={(e) => { setRadnikSifra(e.target.value) }}>
+    {radnici && radnici.map((radnik, index) => (
+      <option key={index} value={radnik.sifra}>
+        {radnik.ime} {radnik.prezime}
+      </option>
+    ))}
+  </Form.Select>
+  
+</Form.Group>
+
+
+      
+       
+
+        <Row>
+          <Col>
+            <Link className='btn btn-danger gumb' to={RoutesNames.PLACA_PREGLED}>
+              Odustani
+            </Link>
+          </Col>
+          <Col>
+            <Button variant='primary' className='gumb' type='submit'>
+              Dodaj Grupu
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    </Container>
+  );
 }

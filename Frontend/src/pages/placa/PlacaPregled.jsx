@@ -45,12 +45,12 @@ export default function PlacaPregled (){
     return (
         <Container>
 
-                    <Link to={RoutesNames.RADNICI_DODAJ} className="btn gumb">
+                    <Link to={RoutesNames.PLACA_DODAJ} className="btn gumb">
                     <FaAddressCard 
                         size='30'
                         className="lijevo"
                     />
-                        Dodaj novog ranika
+                        Dodaj novu plaču
                     </Link>
         
             <Table striped bordered hover responsive className="table">
