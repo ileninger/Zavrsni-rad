@@ -18,11 +18,11 @@ export default function PlacaDodaj() {
   const [radnici, setRadnici] = useState([]);
   const [radnikSifra, setRadnikSifra] = useState(0);
 
-  const [obracunskoRazdoblje, setObracunskoRazdoblje] = useState([]);
-  const [obracunskoRazdobljeSifra, setObracunskoRazdobljeSifra] = useState(0);
+  const [obracunskaRazdoblja, setObracunskaRazdoblja] = useState([]);
+  const [obracunskaRazdobljaSifra, setObracunskaRazdobljaSifra] = useState(0);
 
-  const [podacizaobracun, setPodaciZaObracun] = useState([]);
-  const [podacizaobracunSifra, setPodaciZaObracunSifra] = useState(0);
+  const [podacizaobracune, setPodaciZaObracune] = useState([]);
+  const [podacizaobracuneSifra, setPodaciZaObracuneSifra] = useState(0);
 
   async function dohvatiRadnike(){
     await RadnikService.getRadnici().
@@ -35,23 +35,23 @@ export default function PlacaDodaj() {
   async function dohvatiObracunskoRazdoblje(){
     await ObracunskoRazdobljeService.get().
       then((o)=>{
-        setObracunskoRazdoblje(o.data);
-        setObracunskoRazdobljeSifra(o.data[0].sifra);
+        setObracunskaRazdoblja(o.data);
+        setObracunskaRazdobljaSifra(o.data[0].sifra);
       });
   }
 
   async function dohvatiPodatkeZaObracun(){
-    await ObracunskoRazdobljeService.get().
+    await PodaciZaObracuneService.getPodaciZaObracune().
       then((p)=>{
-        setPodaciZaObracun(p.data);
-        setPodaciZaObracunSifra(o.data[0].sifra);
+        setPodaciZaObracune(p.data);
+        setPodaciZaObracuneSifra(p.data[0].sifra);
       });
   }
 
   async function ucitaj(){
     await dohvatiRadnike();
-    //await dohvatiObracunskoRazdoblje();
-    //await dohvatiPodatkeZaObracun();
+    await dohvatiObracunskoRazdoblje();
+    await dohvatiPodatkeZaObracun();
   }
 
   useEffect(()=>{
@@ -152,6 +152,17 @@ export default function PlacaDodaj() {
           ))}
           </Form.Select>
         </Form.Group> */}
+
+<Form.Group className='mb-3' controlId='obracunskorazdoblje'>
+  <Form.Label>Obračunsko razdoblje</Form.Label>
+  <Form.Select onChange={(e) => { setObracunskaRazdobljaSifra(e.target.value) }}>
+    {obracunskaRazdoblja && obracunskaRazdoblja.map((placa, index) => (
+      <option key={index} value={placa.sifra}>
+        {placa.naziv} 
+      </option>
+    ))}
+  </Form.Select>
+</Form.Group>
 <Form.Group className='mb-3' controlId='radnik'>
   <Form.Label>Radnik</Form.Label>
   <Form.Select onChange={(e) => { setRadnikSifra(e.target.value) }}>
@@ -161,7 +172,17 @@ export default function PlacaDodaj() {
       </option>
     ))}
   </Form.Select>
-  
+</Form.Group>
+
+<Form.Group className='mb-3' controlId='podacizaobracune'>
+  <Form.Label>Podaci za obračun odbitaka</Form.Label>
+  <Form.Select onChange={(e) => { setPodaciZaObracuneSifra(e.target.value) }}>
+    {podacizaobracune && podacizaobracune.map((podaciZaObracun, index) => (
+      <option key={index} value={podaciZaObracun.sifra}>
+        {podaciZaObracun.naziv}
+      </option>
+    ))}
+  </Form.Select>
 </Form.Group>
 
 
