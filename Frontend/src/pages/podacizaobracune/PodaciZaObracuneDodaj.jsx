@@ -16,8 +16,8 @@ export default function PodaciZaObracuneDodaj() {
         if (odgovor.ok) {
             navigate(RoutesNames.PODACIZAOBRACUNE_PREGLED);
         } else {
-            console.log(odgovor);
-            alert(odgovor.poruka);
+            //console.log(odgovor);
+            //alert(odgovor.poruka);
         }
     }
 
@@ -25,6 +25,7 @@ export default function PodaciZaObracuneDodaj() {
         e.preventDefault();
         const podaci = new FormData(e.target);
         //console.log(podaci.get('naziv'));
+        console.log(podaci.getAll('naziv'))
 
         const podacizaobracune =
         {

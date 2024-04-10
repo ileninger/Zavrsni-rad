@@ -9,6 +9,7 @@ import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
 import RadnikService from "../../services/RadnikService";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
 import { RoutesNames } from '../../constants';
+import PlacaService from '../../services/PlacaService';
 
 
 
@@ -60,9 +61,9 @@ export default function PlacaDodaj() {
   }, []);
 
   async function dodaj(e) {
-    //console.log(e);
+    console.log(e);
 
-    const odgovor = await ObracunskoRazdobljeService.dodaj(e);
+    const odgovor = await PlacaService.dodaj(e);
     if (odgovor.ok) {
       navigate(RoutesNames.PLACA_PREGLED);
       } else {
@@ -75,6 +76,8 @@ export default function PlacaDodaj() {
     e.preventDefault();
 
     const podaci = new FormData(e.target);
+
+    console.log(e.target.value)
 
     //console.log(podaci.get('datum'));
     //console.log(podaci.get('vrijeme'));
@@ -95,11 +98,11 @@ export default function PlacaDodaj() {
 
     //console.log(datumpocetka);
 
-    dodaj({
+    dodaj({sifra:1,
       naziv: podaci.get('naziv'),
-      radnikSifra: parseInt(podaci.get('radnikSifra')),
-      podacizaobracunSifra: parseInt(podaci.get('podacizaobracunSifra')),
-      placaSifra: parseInt(podaci.get('placaSifra')),
+      placaSifra: parseInt(podaci.get('nazivplace')),
+      radnikSifra: parseInt(podaci.get('radnik')),
+      podacizaobracunSifra: parseInt(podaci.get('podacizaobracune')),
       //datumobracuna:datumobracuna,
       brutoI: parseFloat(podaci.get('brutoI')),
       brutoII: parseFloat(podaci.get('brutoII')),
@@ -119,14 +122,14 @@ export default function PlacaDodaj() {
           <Form.Label>Naziv</Form.Label>
           <Form.Control
             type="text"
-            name="brutoI"
+            name="naziv"
             placeholder='naziv'
           />
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='nazivplace'>
           <Form.Label>Obračunsko razdoblje</Form.Label>
-          <Form.Select onChange={(e) => { setObracunskaRazdobljaSifra(e.target.value) }}>
+          <Form.Select name='nazivplace' onChange={(e) => { setObracunskaRazdobljaSifra(e.target.value) }}>
             {obracunskaRazdoblja && obracunskaRazdoblja.map((placa, index) => (
               <option key={index} value={placa.sifra}>
                 {placa.nazivplace} 
@@ -136,7 +139,7 @@ export default function PlacaDodaj() {
         </Form.Group>
         <Form.Group className='mb-3' controlId='radnik'>
           <Form.Label>Radnik</Form.Label>
-          <Form.Select onChange={(e) => { setRadnikSifra(e.target.value) }}>
+          <Form.Select name='radnik' onChange={(e) => { setRadnikSifra(e.target.value) }}>
             {radnici && radnici.map((radnik, index) => (
               <option key={index} value={radnik.sifra}>
                 {radnik.ime} {radnik.prezime}
@@ -147,7 +150,7 @@ export default function PlacaDodaj() {
 
         <Form.Group className='mb-3' controlId='podacizaobracune'>
           <Form.Label>Podaci za obračun odbitaka</Form.Label>
-          <Form.Select onChange={(e) => { setPodaciZaObracuneSifra(e.target.value) }}>
+          <Form.Select name='podacizaobracune' onChange={(e) => { setPodaciZaObracuneSifra(e.target.value) }}>
             {podacizaobracune && podacizaobracune.map((podaciZaObracun, index) => (
               <option key={index} value={podaciZaObracun.sifra}>
                 {podaciZaObracun.naziv}

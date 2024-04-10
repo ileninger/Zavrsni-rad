@@ -12,6 +12,7 @@ import { BiSolidUserDetail } from "react-icons/bi";
 import { RoutesNames } from "../../constants";
 import moment from "moment/moment";
 import PlacaService from "../../services/PlacaService";
+import { AxiosError, isAxiosError } from "axios";
 
 
 export default function PlacaPregled (){
@@ -22,17 +23,18 @@ export default function PlacaPregled (){
     async function dohvatiPlace (){
         await PlacaService.get()
         .then((res)=>{
-            setPlace(res.data);
+                setPlace(res.data);
         })
         .catch((e)=>{
-            alert(e);
+            console.log(e.response)
+             if ((e.status != undefined))
+                 alert(e);
         });
     } 
 
     async function obrisi(sifra){
         const odgovor = await PlacaService.obrisi(sifra);
         if (odgovor.ok){
-            alert(odgovor.poruka.data.poruka)
             dohvatiPlace();
         }
 
@@ -91,7 +93,7 @@ export default function PlacaPregled (){
                                      &nbsp;&nbsp;&nbsp;
                                 <Button
                                     variant="normal"
-                                    onClick={()=>obrisiRadnika(radnik.sifra)}
+                                    onClick={()=>obrisi(placa.sifra)}
                                 >
        
                                     <FaUserMinus 
