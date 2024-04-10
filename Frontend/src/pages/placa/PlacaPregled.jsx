@@ -57,17 +57,16 @@ export default function PlacaPregled (){
                 <thead>
                     <tr>
                         <th>Naziv Plače</th>
-                        <th>Ime radnika</th>
-                        <th className="sredina">Prezime radnika</th>
-                        <th className="sredina">Detaljnije</th>
+                        <th className="sredina">Broj radnih sati</th>
+                        <th className="sredina"></th>
                         <th className="sredina">Akcija</th>
                     </tr>
                 </thead>
                 <tbody>
                     {place && place.map((placa,index)=>(
                         <tr key={index}>
-                            <td className="lijevo">{placa.naziv}</td>
-                            <td className="lijevo">{placa.placaBrojRadnihSati}</td>
+                            <td className="sredina">{placa.naziv}</td>
+                            <td className="sredina">{placa.placaBrojRadnihSati}</td>
                             <td className="sredina">
                                 <Button
                                     variant="normal"

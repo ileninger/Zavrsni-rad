@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import moment from "moment";
 
 
-		
+
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
 import RadnikService from "../../services/RadnikService";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
@@ -24,50 +24,51 @@ export default function PlacaDodaj() {
   const [podacizaobracune, setPodaciZaObracune] = useState([]);
   const [podacizaobracuneSifra, setPodaciZaObracuneSifra] = useState(0);
 
-  async function dohvatiRadnike(){
+  async function dohvatiRadnike() {
     await RadnikService.getRadnici().
-      then((odgovor)=>{
+      then((odgovor) => {
         setRadnici(odgovor.data);
         setRadnikSifra(odgovor.data[0].sifra);
       });
   }
 
-  async function dohvatiObracunskoRazdoblje(){
+  async function dohvatiObracunskoRazdoblje() {
     await ObracunskoRazdobljeService.get().
-      then((o)=>{
+      then((o) => {
         setObracunskaRazdoblja(o.data);
         setObracunskaRazdobljaSifra(o.data[0].sifra);
+        console.log(obracunskaRazdoblja)
       });
   }
 
-  async function dohvatiPodatkeZaObracun(){
+  async function dohvatiPodatkeZaObracun() {
     await PodaciZaObracuneService.getPodaciZaObracune().
-      then((p)=>{
+      then((p) => {
         setPodaciZaObracune(p.data);
         setPodaciZaObracuneSifra(p.data[0].sifra);
       });
   }
 
-  async function ucitaj(){
+  async function ucitaj() {
     await dohvatiRadnike();
     await dohvatiObracunskoRazdoblje();
     await dohvatiPodatkeZaObracun();
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     ucitaj();
-  },[]);
+  }, []);
 
   async function dodaj(e) {
     //console.log(e);
 
-    const odgovor = await Service.dodaj(e);
+    const odgovor = await ObracunskoRazdobljeService.dodaj(e);
     if (odgovor.ok) {
       navigate(RoutesNames.PLACA_PREGLED);
-    } else {
+      } else {
       alert(odgovor.poruka.errors);
     }
-    
+
   }
 
   function handleSubmit(e) {
@@ -91,22 +92,22 @@ export default function PlacaDodaj() {
 
 
 
-    
+
     //console.log(datumpocetka);
 
     dodaj({
-        naziv:podaci.get('naziv'),
-        radnikSifra:parseInt(podaci.get('radnikSifra')),
-        podacizaobracunSifra:parseInt(podaci.get('podacizaobracunSifra')),
-        placaSifra:parseInt(podaci.get('placaSifra')),
-        //datumobracuna:datumobracuna,
-        brutoI:parseFloat(podaci.get('brutoI')),
-        brutoII:parseFloat(podaci.get('brutoII')),
-        poreznaosnovicaporezanadohodak:parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
-        osnovniosobniodbitak:parseFloat(podaci.get('osnovniOsobniOdbitak')),
-        udiozaprvimirovinskistup:parseFloat(podaci.get('udiozaprvimirovinskistup')),
-        udiozadrugimirovinskistup:parseFloat(podaci.get('udiozadrugimirovinskistup')),
-        netoiznoszaisplatu:parseFloat(podaci.get('netoiznoszaisplatu')),
+      naziv: podaci.get('naziv'),
+      radnikSifra: parseInt(podaci.get('radnikSifra')),
+      podacizaobracunSifra: parseInt(podaci.get('podacizaobracunSifra')),
+      placaSifra: parseInt(podaci.get('placaSifra')),
+      //datumobracuna:datumobracuna,
+      brutoI: parseFloat(podaci.get('brutoI')),
+      brutoII: parseFloat(podaci.get('brutoII')),
+      poreznaosnovicaporezanadohodak: parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
+      osnovniosobniodbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
+      udiozaprvimirovinskistup: parseFloat(podaci.get('udiozaprvimirovinskistup')),
+      udiozadrugimirovinskistup: parseFloat(podaci.get('udiozadrugimirovinskistup')),
+      netoiznoszaisplatu: parseFloat(podaci.get('netoiznoszaisplatu')),
     });
   }
 
@@ -114,80 +115,115 @@ export default function PlacaDodaj() {
   return (
     <Container className='mt-4'>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className='mb-3' controlId='naziv'>
+      <Form.Group controlId="naziv">
           <Form.Label>Naziv</Form.Label>
           <Form.Control
-            type='text'
-            name='naziv'
-            placeholder='Naziv plače'
-            maxLength={255}
+            type="text"
+            name="brutoI"
+            placeholder='naziv'
           />
         </Form.Group>
 
-        {/* <Form.Group className='mb-3' controlId='datum'>
-          <Form.Label>Datum</Form.Label>
-          <Form.Control
-            type='date'
-            name='datum'
-          />
-        </Form.Group>
-
-        <Form.Group className='mb-3' controlId='vrijeme'>
-          <Form.Label>Vrijeme</Form.Label>
-          <Form.Control
-            type='time'
-            name='vrijeme'
-          />
-        </Form.Group> */}
-
-        {/* <Form.Group className='mb-3' controlId='smjer'>
-          <Form.Label>Smjer</Form.Label>
-          <Form.Select multiple={true}
-          onChange={(e)=>{setSmjerSifra(e.target.value)}}
-          >
-          {smjerovi && smjerovi.map((s,index)=>(
-            <option key={index} value={s.sifra}>
-              {s.naziv}
-            </option>
-          ))}
+        <Form.Group className='mb-3' controlId='nazivplace'>
+          <Form.Label>Obračunsko razdoblje</Form.Label>
+          <Form.Select onChange={(e) => { setObracunskaRazdobljaSifra(e.target.value) }}>
+            {obracunskaRazdoblja && obracunskaRazdoblja.map((placa, index) => (
+              <option key={index} value={placa.sifra}>
+                {placa.nazivplace} 
+              </option>
+            ))}
           </Form.Select>
-        </Form.Group> */}
+        </Form.Group>
+        <Form.Group className='mb-3' controlId='radnik'>
+          <Form.Label>Radnik</Form.Label>
+          <Form.Select onChange={(e) => { setRadnikSifra(e.target.value) }}>
+            {radnici && radnici.map((radnik, index) => (
+              <option key={index} value={radnik.sifra}>
+                {radnik.ime} {radnik.prezime}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
 
-<Form.Group className='mb-3' controlId='obracunskorazdoblje'>
-  <Form.Label>Obračunsko razdoblje</Form.Label>
-  <Form.Select onChange={(e) => { setObracunskaRazdobljaSifra(e.target.value) }}>
-    {obracunskaRazdoblja && obracunskaRazdoblja.map((placa, index) => (
-      <option key={index} value={placa.sifra}>
-        {placa.naziv} 
-      </option>
-    ))}
-  </Form.Select>
-</Form.Group>
-<Form.Group className='mb-3' controlId='radnik'>
-  <Form.Label>Radnik</Form.Label>
-  <Form.Select onChange={(e) => { setRadnikSifra(e.target.value) }}>
-    {radnici && radnici.map((radnik, index) => (
-      <option key={index} value={radnik.sifra}>
-        {radnik.ime} {radnik.prezime}
-      </option>
-    ))}
-  </Form.Select>
-</Form.Group>
+        <Form.Group className='mb-3' controlId='podacizaobracune'>
+          <Form.Label>Podaci za obračun odbitaka</Form.Label>
+          <Form.Select onChange={(e) => { setPodaciZaObracuneSifra(e.target.value) }}>
+            {podacizaobracune && podacizaobracune.map((podaciZaObracun, index) => (
+              <option key={index} value={podaciZaObracun.sifra}>
+                {podaciZaObracun.naziv}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
 
-<Form.Group className='mb-3' controlId='podacizaobracune'>
-  <Form.Label>Podaci za obračun odbitaka</Form.Label>
-  <Form.Select onChange={(e) => { setPodaciZaObracuneSifra(e.target.value) }}>
-    {podacizaobracune && podacizaobracune.map((podaciZaObracun, index) => (
-      <option key={index} value={podaciZaObracun.sifra}>
-        {podaciZaObracun.naziv}
-      </option>
-    ))}
-  </Form.Select>
-</Form.Group>
+        <Form.Group controlId="brutoI">
+          <Form.Label>Bruto I.</Form.Label>
+          <Form.Control
+            type="text"
+            name="brutoI"
+            placeholder='Bruto I.'
+          />
+        </Form.Group>
+        
+        <Form.Group controlId="brutoII">
+          <Form.Label>Bruto II.</Form.Label>
+          <Form.Control
+            type="text"
+            name="brutoII"
+            placeholder='Bruto II.'
+          />
+        </Form.Group>
+        <Form.Group controlId="poreznaosnovicaporezanadohodak">
+          <Form.Label>Iznos porezne osnovnice poreza na dohodak</Form.Label>
+          <Form.Control
+            type="text"
+            name="poreznaosnovicaporezanadohodak"
+            placeholder='Iznos porezne osnovnice poreza na dohodak'
+          />
+        </Form.Group>
+
+        <Form.Group controlId="osnovniOsobniOdbitak">
+          <Form.Label>Iznos osnovnog osobnog odbitka </Form.Label>
+          <Form.Control
+            type="text"
+            name="osnovniOsobniOdbitak"
+            placeholder='Iznos osnovnog osobnog odbitka'
+          />
+        </Form.Group>
+
+        <Form.Group controlId="udiozaprvimirovinskistup">
+          <Form.Label>Iznos koji se iz plače isplačuje za prvi mirovinski stup </Form.Label>
+          <Form.Control
+            type="text"
+            name="udiozaprvimirovinskistup"
+            placeholder='Iznos za prvi mirovinski stup'
+          />
+        </Form.Group>
+
+        <Form.Group controlId="udiozadrugimirovinskistup">
+          <Form.Label>Iznos koji se iz plače isplačuje za drugi mirovinski stup </Form.Label>
+          <Form.Control
+            type="text"
+            name="udiozadrugimirovinskistup"
+            placeholder='Iznos za drugi mirovinski stup'
+          />
+        </Form.Group>
+
+        <Form.Group controlId="netoiznoszaisplatu">
+          <Form.Label>Iznos koji se isplačuje radniku'</Form.Label>
+          <Form.Control
+            type="text"
+            name="netoiznoszaisplatu"
+            placeholder='Iznos koji se isplačuje radniku'
+          />
+        </Form.Group>
 
 
-      
-       
+
+
+
+
+
 
         <Row>
           <Col>
@@ -197,7 +233,7 @@ export default function PlacaDodaj() {
           </Col>
           <Col>
             <Button variant='primary' className='gumb' type='submit'>
-              Dodaj Grupu
+              Dodaj Plaču
             </Button>
           </Col>
         </Row>
