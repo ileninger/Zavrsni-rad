@@ -51,10 +51,10 @@ namespace WebApi_ZavrsniRad.Controllers
                     .Include(g=>g.PodaciZaObracun)
                     .Include(g=>g.Placa)                   
                     .ToList();
-                if (lista == null || lista.Count == 0)
-                {
-                    return BadRequest("Ne postoje obračun u bazi");
-                }
+                //if (lista == null || lista.Count == 0)
+                //{
+                //    return BadRequest("Ne postoje obračun u bazi");
+                //}
                 return new JsonResult(lista.MapObracunReadList());
             }
             catch (Exception ex)
