@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using WebApi_ZavrsniRad.Data;
 using WebApi_ZavrsniRad.Extensions;
 using WebApi_ZavrsniRad.Models;
@@ -31,9 +32,9 @@ namespace WebApi_ZavrsniRad.Controllers
         /// </summary>
         /// <remarks>
         /// Primjer upita
-        ///     Get api/v1/Radnik
+        ///     Get api/v1/Obracun
         /// </remarks>
-        /// <returns> Radnici u bazi </returns>
+        /// <returns> Obračuni u bazi </returns>
         /// <response code="200">Sve OK </response>
         /// <response code="400">Zahtjev nije valjan</response>
         [HttpGet]
@@ -226,6 +227,7 @@ namespace WebApi_ZavrsniRad.Controllers
                 entitet.PodaciZaObracun = podacizaobracun;
                 entitet.Placa = placa;
 
+                
 
 
                 _context.Obracuni.Update(entitet);

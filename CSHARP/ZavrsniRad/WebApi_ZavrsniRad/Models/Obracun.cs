@@ -38,13 +38,13 @@ namespace WebApi_ZavrsniRad.Models
         /// <summary>
         /// Udio koji se odvaja za prvi mirovinski stup
         /// </summary>
-        public decimal? UdioZaPrviMirovinskiStup { get; set; }
+        public decimal? IznosZaPrviMirovinskiStup { get; set; }
 
 
         /// <summary>
         /// Udio koji se odvaja za drugi mirovinski stup
         /// </summary>
-        public decimal? UdioZaDrugiMirovinskiStup { get; set; }
+        public decimal? IznosZaDrugiMirovinskiStup { get; set; }
 
         public decimal? OsnovniOsobniOdbitak { get; set; }
 

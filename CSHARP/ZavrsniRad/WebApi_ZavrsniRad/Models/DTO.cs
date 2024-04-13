@@ -25,15 +25,14 @@ namespace WebApi_ZavrsniRad.Models
 
         string? placaNaziv,int? placaBrojRadnihSati,
 
-        DateTime datumObracuna, decimal brutoI, decimal brutoII, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
-        decimal udiozaprvimirovinskistup, decimal udiozadrugimirovinskistup, decimal netoiznoszaisplatu)
+         DateTime datumObracuna, decimal brutoI, decimal brutoII, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
+        decimal iznoszaprvimirovinskistup, decimal iznoszadrugimirovinskistup, decimal netoiznoszaisplatu)
     {
 
     };
 
 
     public record ObracunDTOInsertUpdate(int sifra, string naziv, int? radnikSifra, int? podacizaobracunSifra, int? placaSifra,
-        DateTime datumobracuna, decimal brutoI, decimal brutoII, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
-        decimal udiozaprvimirovinskistup, decimal udiozadrugimirovinskistup, decimal netoiznoszaisplatu);
+       DateTime datumobracuna, decimal brutoI, decimal brutoII, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
+       decimal iznoszaprvimirovinskistup, decimal iznoszadrugimirovinskistup, decimal netoiznoszaisplatu);
 }
-

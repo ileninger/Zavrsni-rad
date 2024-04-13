@@ -10,7 +10,7 @@ namespace WebApi_ZavrsniRad.Mappers
         {
             return new Mapper(
             new MapperConfiguration(c =>
-            {
+            {   
                 c.CreateMap<Obracun, ObracunDTORead>()
                 .ConstructUsing(entitet =>
                  new ObracunDTORead(
@@ -32,8 +32,8 @@ namespace WebApi_ZavrsniRad.Mappers
                      entitet.Bruto_I ?? 0,
                      entitet.Bruto_II ?? 0,
                      entitet.OsnovniOsobniOdbitak ?? 0,
-                     entitet.UdioZaDrugiMirovinskiStup ?? 0,
-                     entitet.UdioZaDrugiMirovinskiStup ?? 0,
+                     entitet.IznosZaPrviMirovinskiStup ?? 0,
+                     entitet.IznosZaDrugiMirovinskiStup ?? 0,
                      entitet.PoreznaOsnovicaPorezaNaDohodak ?? 0,
                      entitet.NetoIznosZaIsplatu ?? 0
 
@@ -58,14 +58,15 @@ namespace WebApi_ZavrsniRad.Mappers
                         entitet.Radnik == null ? null : entitet.Radnik.Sifra,
                         entitet.PodaciZaObracun == null ? null : entitet.PodaciZaObracun.Sifra,
                         entitet.Placa == null ? null : entitet.Placa.Sifra,
-                        
                         entitet.DatumObracuna ?? DateTime.MinValue,
+
+
                         entitet.Bruto_I ?? 0,
                         entitet.Bruto_II ?? 0,
                         entitet.PoreznaOsnovicaPorezaNaDohodak ?? 0,
                         entitet.OsnovniOsobniOdbitak ?? 0,
-                        entitet.UdioZaDrugiMirovinskiStup ?? 0,
-                        entitet.UdioZaDrugiMirovinskiStup ?? 0,
+                        entitet.IznosZaPrviMirovinskiStup ?? 0,
+                        entitet.IznosZaDrugiMirovinskiStup ?? 0,
                         entitet. NetoIznosZaIsplatu ?? 0
                      ));
              })

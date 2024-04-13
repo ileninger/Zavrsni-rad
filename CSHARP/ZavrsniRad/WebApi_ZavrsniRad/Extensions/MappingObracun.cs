@@ -1,7 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using WebApi_ZavrsniRad.Mappers;
 using WebApi_ZavrsniRad.Models;
+using WebApi_ZavrsniRad.Controllers;
+using WebApi_ZavrsniRad.Data;
+using System.Xml;
 
 namespace WebApi_ZavrsniRad.Extensions
 {
@@ -39,18 +44,49 @@ namespace WebApi_ZavrsniRad.Extensions
         {
             entitet.Naziv = dto.naziv;
             entitet.DatumObracuna = dto.datumobracuna;
-            entitet.Bruto_I = dto.brutoI;
-            entitet.Bruto_II = dto.brutoII;
-            entitet.PoreznaOsnovicaPorezaNaDohodak = dto.poreznaosnovicaporezanadohodak;
-            entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
-            entitet.UdioZaPrviMirovinskiStup = dto.udiozaprvimirovinskistup;
-            entitet.UdioZaDrugiMirovinskiStup = dto.udiozadrugimirovinskistup;
-            entitet.NetoIznosZaIsplatu = dto.netoiznoszaisplatu;
+            ObracunNakonUnosa(entitet,dto.radnikSifra, dto.placaSifra, dto.podacizaobracunSifra);
+            //entitet.Bruto_I = dto.brutoI;
+            //entitet.Bruto_II = dto.brutoII;
+            //entitet.PoreznaOsnovicaPorezaNaDohodak = dto.poreznaosnovicaporezanadohodak;
+            //entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
+            //entitet.IznosZaPrviMirovinskiStup = dto.iznoszaprvimirovinskistup;
+            //entitet.IznosZaDrugiMirovinskiStup = dto.iznoszadrugimirovinskistup;
+            //entitet.NetoIznosZaIsplatu = dto.netoiznoszaisplatu;
             
             
             return entitet;
         }
 
+        private static void ObracunNakonUnosa( this Obracun entitet, int?RadnikSifra, int? PlacaSifra, int?PodaciZaObracunSifra)
+        {
+            var options = new DbContextOptionsBuilder<ObracunPlacaContext>();
+            options.UseSqlServer("Data Source=SQL6031.site4now.net;Initial Catalog=db_aa599e_ileninger;User Id=db_aa599e_ileninger_admin;Password=4xHgsxpPFdtIMHe");
+            var context = new ObracunPlacaContext(options.Options);
+            var podacizaobracun = context.PodaciZaObracune.Find(PodaciZaObracunSifra);
+            var placa = context.Place.Find(PlacaSifra);
+            var radnik = context.Radnici.Find(RadnikSifra);
+
+            entitet.Bruto_I = radnik.CijenaRadnogSata * radnik.KoeficijentRadnogMjesta * placa.BrojRadnihSati;
+            entitet.IznosZaPrviMirovinskiStup = (podacizaobracun.PostotakZaPrviMirovinskiStup / 100) * entitet.Bruto_I;
+            entitet.IznosZaDrugiMirovinskiStup = (podacizaobracun.PostotakZaDrugiMirovinskiStup/100)* entitet.Bruto_I;
+
+            entitet.Bruto_II = entitet.Bruto_I - entitet.IznosZaDrugiMirovinskiStup - entitet.IznosZaPrviMirovinskiStup;
+            entitet.OsnovniOsobniOdbitak = podacizaobracun.OsnovniOsobniOdbitak; 
+            entitet.PoreznaOsnovicaPorezaNaDohodak = entitet.Bruto_II - entitet.OsnovniOsobniOdbitak;
+            if (entitet.PoreznaOsnovicaPorezaNaDohodak < 0)
+            {
+                entitet.PoreznaOsnovicaPorezaNaDohodak = 0;
+                entitet.NetoIznosZaIsplatu = entitet.Bruto_II;
+            }
+            else
+            {
+                entitet.NetoIznosZaIsplatu = entitet.Bruto_II - ((entitet.PoreznaOsnovicaPorezaNaDohodak - entitet.OsnovniOsobniOdbitak) * podacizaobracun.StopaPorezaNaDohodak / 100);
+            }
+
+
+
+
+        }
 
 
 
