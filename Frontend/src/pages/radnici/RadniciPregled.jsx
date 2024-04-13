@@ -11,14 +11,17 @@ import { BiSolidUserDetail } from "react-icons/bi";
 
 import { RoutesNames } from "../../constants";
 import moment from "moment/moment";
+import useLoading from "../../hooks/useLoading";
 
 
 export default function RadniciPregled (){
 
     const [radnici,setRadnici] = useState ();
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiRadnike (){
+        showLoading();
         await RadnikService.getRadnici()
         .then((res)=>{
             setRadnici(res.data);
@@ -30,6 +33,7 @@ export default function RadniciPregled (){
 
     async function obrisiRadnika(sifra){
         const odgovor = await RadnikService.obrisiRadnika(sifra);
+        showLoading();  
         if (odgovor.ok){
             alert(odgovor.poruka.data.poruka)
             dohvatiRadnike();

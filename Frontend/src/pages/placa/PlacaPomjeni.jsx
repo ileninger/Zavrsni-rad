@@ -13,7 +13,7 @@ import PlacaService from '../../services/PlacaService';
 
 
 
-export default function PlacaDodaj() {
+export default function PlacaPomjeni() {
   const navigate = useNavigate();
 
   const [radnici, setRadnici] = useState([]);
@@ -104,13 +104,13 @@ export default function PlacaDodaj() {
       radnikSifra: parseInt(podaci.get('radnik')),
       podacizaobracunSifra: parseInt(podaci.get('podacizaobracune')),
       //datumobracuna:datumobracuna,
-      brutoI: 0,//parseFloat(podaci.get('brutoI')),
-      brutoII:0,// parseFloat(podaci.get('brutoII')),
-      poreznaosnovicaporezanadohodak:0,// parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
-      osnovniosobniodbitak:0,// parseFloat(podaci.get('osnovniOsobniOdbitak')),
-      udiozaprvimirovinskistup:0,// parseFloat(podaci.get('udiozaprvimirovinskistup')),
-      udiozadrugimirovinskistup:0,// parseFloat(podaci.get('udiozadrugimirovinskistup')),
-      netoiznoszaisplatu:0,// parseFloat(podaci.get('netoiznoszaisplatu')),
+      brutoI: parseFloat(podaci.get('brutoI')),
+      brutoII: parseFloat(podaci.get('brutoII')),
+      poreznaosnovicaporezanadohodak: parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
+      osnovniosobniodbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
+      udiozaprvimirovinskistup: parseFloat(podaci.get('udiozaprvimirovinskistup')),
+      udiozadrugimirovinskistup: parseFloat(podaci.get('udiozadrugimirovinskistup')),
+      netoiznoszaisplatu: parseFloat(podaci.get('netoiznoszaisplatu')),
     });
   }
 
@@ -159,7 +159,7 @@ export default function PlacaDodaj() {
           </Form.Select>
         </Form.Group>
 
-        {/* <Form.Group controlId="brutoI">
+         <Form.Group controlId="brutoI">
           <Form.Label>Bruto I.</Form.Label>
           <Form.Control
             type="text"
@@ -218,11 +218,8 @@ export default function PlacaDodaj() {
             type="text"
             name="netoiznoszaisplatu"
             placeholder='Iznos koji se isplačuje radniku'
-          /> */}
-        {/* </Form.Group>
-
- */}
-
+          />
+         </Form.Group>
 
 
 

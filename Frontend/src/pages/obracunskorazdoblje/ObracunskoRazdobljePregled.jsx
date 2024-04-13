@@ -13,14 +13,18 @@ import { RoutesNames } from "../../constants";
 import moment from "moment/moment";
 import PlacaService from "../../services/ObracunskoRazdobljeService";
 import ObračunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
+import useLoading from "../../hooks/useLoading";
 
 
 export default function ObracunskoRazdobljePregled (){
 
     const [obracunskorazdoblje,setObracunskoRazdoblje] = useState ();
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
+    
 
     async function dohvatiObracunskoRazdoblje (){
+        showLoading();
         await ObračunskoRazdobljeService.get()
         .then((res)=>{
             setObracunskoRazdoblje(res.data);
@@ -96,6 +100,15 @@ export default function ObracunskoRazdobljePregled (){
                                     size={25} />
                                 </Button>
                                      &nbsp;&nbsp;&nbsp;
+                                     <Button
+                                    variant="normal"
+                                    onClick={()=>{navigate(`/placa/${obracunskorazdoblje.sifra}`)}}>
+                                    <FaUserEdit 
+                                     color="blue"
+                                    
+                                    size={25} />
+                                </Button>
+                                &nbsp;&nbsp;&nbsp;
                                 <Button
                                     variant="normal"
                                     onClick={()=>obrisi(obracunskorazdoblje.sifra)}

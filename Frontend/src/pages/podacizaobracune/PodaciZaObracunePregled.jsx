@@ -11,14 +11,16 @@ import { FaUserMinus } from "react-icons/fa6";
 import { RoutesNames } from "../../constants";
 import moment from "moment/moment";
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
-
+import useLoading from "../../hooks/useLoading";
 
 export default function PodaciZaObracunePregled (){
 
     const [podacizaobracune,setPodaciZaObracune] = useState ();
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiPodatkeZaObracun (){
+        showLoading();
         await PodaciZaObracuneService.getPodaciZaObracune()
         .then((res)=>{
             setPodaciZaObracune(res.data);
