@@ -28,14 +28,16 @@ namespace WebApi_ZavrsniRad.Mappers
                      entitet.PodaciZaObracun.StopaPorezaNaDohodak == null ? 0 : entitet.PodaciZaObracun.StopaPorezaNaDohodak,
                      entitet.Placa.NazivPlace == null ? "" : entitet.Placa.NazivPlace,
                      entitet.Placa.BrojRadnihSati == null ? 0 : entitet.Placa.BrojRadnihSati,
-                     entitet.DatumObracuna ?? DateTime.MinValue,
                      entitet.Bruto_I ?? 0,
                      entitet.Dohodak ?? 0,
                      entitet.OsnovniOsobniOdbitak ?? 0,
                      entitet.IznosZaPrviMirovinskiStup ?? 0,
                      entitet.IznosZaDrugiMirovinskiStup ?? 0,
                      entitet.PoreznaOsnovicaPorezaNaDohodak ?? 0,
-                     entitet.NetoIznosZaIsplatu ?? 0
+                     entitet.NetoIznosZaIsplatu ?? 0,
+                     entitet.IznosPorezaNaDohodak ?? 0
+
+
 
 
 
@@ -58,16 +60,14 @@ namespace WebApi_ZavrsniRad.Mappers
                         entitet.Radnik == null ? null : entitet.Radnik.Sifra,
                         entitet.PodaciZaObracun == null ? null : entitet.PodaciZaObracun.Sifra,
                         entitet.Placa == null ? null : entitet.Placa.Sifra,
-                        entitet.DatumObracuna ?? DateTime.MinValue,
-
-
                         entitet.Bruto_I ?? 0,
                         entitet.Dohodak ?? 0,
                         entitet.PoreznaOsnovicaPorezaNaDohodak ?? 0,
                         entitet.OsnovniOsobniOdbitak ?? 0,
                         entitet.IznosZaPrviMirovinskiStup ?? 0,
                         entitet.IznosZaDrugiMirovinskiStup ?? 0,
-                        entitet. NetoIznosZaIsplatu ?? 0
+                        entitet. NetoIznosZaIsplatu ?? 0,
+                        entitet.IznosPorezaNaDohodak ?? 0
                      ));
              })
              );

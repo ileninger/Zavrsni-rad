@@ -43,15 +43,24 @@ namespace WebApi_ZavrsniRad.Extensions
             this ObracunDTOInsertUpdate dto, Obracun entitet)
         {
             entitet.Naziv = dto.naziv;
-            entitet.DatumObracuna = dto.datumobracuna;
-            ObracunNakonUnosa(entitet,dto.radnikSifra, dto.placaSifra, dto.podacizaobracunSifra);
-            //entitet.Bruto_I = dto.brutoI;
-            //entitet.Dohodak = dto.brutoII;
-            //entitet.PoreznaOsnovicaPorezaNaDohodak = dto.poreznaosnovicaporezanadohodak;
-            //entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
-            //entitet.IznosZaPrviMirovinskiStup = dto.iznoszaprvimirovinskistup;
-            //entitet.IznosZaDrugiMirovinskiStup = dto.iznoszadrugimirovinskistup;
-            //entitet.NetoIznosZaIsplatu = dto.netoiznoszaisplatu;
+            if(entitet.Bruto_I != 0 || entitet.Dohodak != 0)
+            {
+                ObracunNakonUnosa(entitet, dto.radnikSifra, dto.placaSifra, dto.podacizaobracunSifra);
+            }
+            else
+            {
+
+                entitet.Bruto_I = dto.brutoI;
+                entitet.Dohodak = dto.dohodak;
+                entitet.PoreznaOsnovicaPorezaNaDohodak = dto.poreznaosnovicaporezanadohodak;
+                entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
+                entitet.IznosZaPrviMirovinskiStup = dto.iznoszaprvimirovinskistup;
+                entitet.IznosZaDrugiMirovinskiStup = dto.iznoszadrugimirovinskistup;
+                entitet.IznosPorezaNaDohodak = dto.iznosporezanadohodak;
+                entitet.NetoIznosZaIsplatu = dto.netoiznoszaisplatu;
+            }
+            
+
             
             
             return entitet;
@@ -69,18 +78,20 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.Bruto_I = radnik.CijenaRadnogSata * radnik.KoeficijentRadnogMjesta * placa.BrojRadnihSati;
             entitet.IznosZaPrviMirovinskiStup = (podacizaobracun.PostotakZaPrviMirovinskiStup / 100) * entitet.Bruto_I;
             entitet.IznosZaDrugiMirovinskiStup = (podacizaobracun.PostotakZaDrugiMirovinskiStup/100)* entitet.Bruto_I;
-
             entitet.Dohodak = entitet.Bruto_I - entitet.IznosZaDrugiMirovinskiStup - entitet.IznosZaPrviMirovinskiStup;
             entitet.OsnovniOsobniOdbitak = radnik.OsnovniOsobniOdbitak; 
             entitet.PoreznaOsnovicaPorezaNaDohodak = entitet.Dohodak - entitet.OsnovniOsobniOdbitak;
-            if (entitet.PoreznaOsnovicaPorezaNaDohodak < 0)
+
+            if (entitet.PoreznaOsnovicaPorezaNaDohodak < 0 || entitet.PoreznaOsnovicaPorezaNaDohodak < entitet.OsnovniOsobniOdbitak)
             {
                 entitet.PoreznaOsnovicaPorezaNaDohodak = 0;
+                entitet.IznosPorezaNaDohodak = 0;
                 entitet.NetoIznosZaIsplatu = entitet.Dohodak;
             }
             else
             {
-                entitet.NetoIznosZaIsplatu = entitet.Dohodak - ((entitet.PoreznaOsnovicaPorezaNaDohodak - entitet.OsnovniOsobniOdbitak) * podacizaobracun.StopaPorezaNaDohodak / 100);
+                entitet.IznosPorezaNaDohodak = ((entitet.PoreznaOsnovicaPorezaNaDohodak - entitet.OsnovniOsobniOdbitak) * podacizaobracun.StopaPorezaNaDohodak / 100);
+                entitet.NetoIznosZaIsplatu = entitet.Dohodak - entitet.IznosPorezaNaDohodak;
             }
 
 

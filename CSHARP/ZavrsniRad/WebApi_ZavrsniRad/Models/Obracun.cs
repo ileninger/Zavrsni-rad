@@ -51,6 +51,8 @@ namespace WebApi_ZavrsniRad.Models
 
         public decimal? NetoIznosZaIsplatu { get; set; }
 
+        public decimal? IznosPorezaNaDohodak { get; set; }
+
 
 
     }

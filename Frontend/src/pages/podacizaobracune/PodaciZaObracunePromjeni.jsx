@@ -70,15 +70,6 @@ export default function PodaciZaObracunePromjeni() {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="osnovniosobniodbitak">
-                    <Form.Label>Osnovni osobni odbitak</Form.Label>
-                    <Form.Control
-                        type="text"
-                        defaultValue={podacizaobracune.osnovniosobniodbitak}
-                        name="osnovniosobniodbitak"
-                    />
-                </Form.Group>
-
                 <Form.Group controlId="postotakzaprvimirovinskistup">
                     <Form.Label>Postotak za prvi mirovinski stup </Form.Label>
                     <Form.Control
