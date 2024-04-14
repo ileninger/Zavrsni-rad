@@ -63,7 +63,7 @@ export default function ObracunskoRazdobljeDodaj() {
                 <Form.Group controlId="datumpocetkaplace">
                     <Form.Label>Datum početka obračunskog razdoblja</Form.Label>
                     <Form.Control
-                        type="text"
+                        type="date"
                         name="datumpocetkaplace"
                         placeholder='Datum početka obračunskog razdoblja'
                     />
@@ -71,7 +71,7 @@ export default function ObracunskoRazdobljeDodaj() {
                 <Form.Group controlId="datumkrajaplace">
                     <Form.Label>Datum završetka obračunskog razdoblja </Form.Label>
                     <Form.Control
-                        type="text"
+                        type="date"
                         name="datumkrajaplace"
                         placeholder='Datum završetka obračunskog razdoblja'
                     />

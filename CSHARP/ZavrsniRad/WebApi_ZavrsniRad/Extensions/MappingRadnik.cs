@@ -41,6 +41,7 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.Prezime = dto.prezime;
             entitet.OiB = dto.oib;
             entitet.Iban = dto.iban;
+            entitet.DatumZaposlenja = dto.datumzaposlenja;
             entitet.CijenaRadnogSata = dto.cijenaradnogsata;
             entitet.KoeficijentRadnogMjesta = dto.koeficijentradnogmjesta;
             entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;

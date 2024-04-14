@@ -7,6 +7,9 @@ import RadnikService from "../../services/RadnikService";
 import { useEffect, useState,useRef } from "react";
 import Cropper from 'react-cropper';
 
+
+import moment from "moment/moment";
+
 export default function RadniciPomjeni() {
     const navigate = useNavigate();
     const routeParams = useParams();
@@ -129,7 +132,7 @@ export default function RadniciPomjeni() {
                         <Form.Group controlId="datumzaposlenja">
                             <Form.Label>DatumZaposlenja</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="date"
                                 defaultValue={radnik.datumzaposlenja}
                                 name="datumzaposlenja" />
                         </Form.Group>

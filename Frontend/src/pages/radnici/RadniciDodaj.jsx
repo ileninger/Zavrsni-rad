@@ -5,6 +5,8 @@ import { RiArrowGoForwardFill } from "react-icons/ri";
 import { RoutesNames } from "../../constants";
 import RadnikService from "../../services/RadnikService";
 
+import moment from "moment/moment";
+
 
 export default function RadniciDodaj (){
     const navigate = useNavigate();
@@ -74,7 +76,7 @@ export default function RadniciDodaj (){
                 <Form.Group controlId="datumzaposlenja">
                     <Form.Label>DatumZaposlenja</Form.Label>
                     <Form.Control 
-                        type="text"
+                        type="date"
                         name="datumzaposlenja"
                         placeholder='Datum zaposlenja radnika'
                         maxLength={255}   

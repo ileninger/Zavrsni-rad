@@ -93,7 +93,7 @@ export default function RadniciDetaljnije() {
                 </Form.Group>
                 <Form.Group controlId="iban">
                     <Form.Label>Iban</Form.Label>
-                    <Form.Control
+                    <Form.Control   
                         type="text"
                         defaultValue={radnik.iban}
                         name="iban" />
