@@ -61,7 +61,9 @@ async function getBySifra(sifra){
         return {poruka: e}
     });
 }
-
+async function postaviSliku(sifra, slika) {
+    return await httpService.put('/Radnik/postaviSliku/' + sifra, slika);
+  }
 
 
 
@@ -71,4 +73,5 @@ export default{
     dodaj,
     promjeni, 
     getBySifra,
+    postaviSliku,
 };

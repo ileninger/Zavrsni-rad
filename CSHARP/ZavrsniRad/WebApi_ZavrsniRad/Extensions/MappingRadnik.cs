@@ -44,7 +44,24 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.CijenaRadnogSata = dto.cijenaradnogsata;
             entitet.KoeficijentRadnogMjesta = dto.koeficijentradnogmjesta;
             entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
+            PutanjaDatoteke(entitet);
             return entitet;
+        }
+
+        private static string PutanjaDatoteke(Radnik e)
+        {
+            try
+            {
+                var ds = Path.DirectorySeparatorChar;
+                string slika = Path.Combine(Directory.GetCurrentDirectory()
+                    + ds + "wwwroot" + ds + "slike" + ds + "polaznici" + ds + e.Sifra + ".png");
+                return File.Exists(slika) ? "/slike/polaznici/" + e.Sifra + ".png" : null;
+            }
+            catch
+            {
+                return null;
+            }
+
         }
 
 
