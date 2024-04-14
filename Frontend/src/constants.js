@@ -4,6 +4,8 @@ export const RoutesNames = {
     RADNICI_PREGLED:'/radnici',
     RADNICI_DODAJ:'/radnici/dodaj',
     RADNICI_PROMJENI:'radnici/:sifra',
+    RADNICI_DETALJNIJE:'radnici/detaljnije/:sifra',
+
 
     PODACIZAOBRACUNE_PREGLED:'/podaciZaObracune',
     PODACIZAOBRACUNE_DODAJ:'/podaciZaObracune/dodaj',

@@ -9,6 +9,7 @@ import './App.css';
 import RadniciDodaj from "./pages/radnici/RadniciDodaj"
 import RadniciPomjeni from "./pages/radnici/RadniciPomjeni"
 import RadniciPregled from "./pages/radnici/RadniciPregled"
+import RadniciDetaljnije from "./pages/radnici/RadniciDetaljnije"
 
 import PodaciZaObracunePregled from "./pages/podacizaobracune/PodaciZaObracunePregled"
 import PodaciZaObracuneDodaj from "./pages/podacizaobracune/PodaciZaObracuneDodaj"
@@ -37,6 +38,7 @@ function App() {
         <Route path={RoutesNames.RADNICI_PREGLED} element ={<RadniciPregled/>} />
         <Route path={RoutesNames.RADNICI_DODAJ} element ={<RadniciDodaj/>} />
         <Route path={RoutesNames.RADNICI_PROMJENI} element ={<RadniciPomjeni/>} />
+        <Route path={RoutesNames.RADNICI_DETALJNIJE} element ={<RadniciDetaljnije/>} />
 
         <Route path={RoutesNames.PODACIZAOBRACUNE_PREGLED} element ={<PodaciZaObracunePregled/>} />
         <Route path={RoutesNames.PODACIZAOBRACUNE_DODAJ} element ={<PodaciZaObracuneDodaj/>} />

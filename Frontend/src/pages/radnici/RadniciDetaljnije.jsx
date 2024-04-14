@@ -7,7 +7,7 @@ import RadnikService from "../../services/RadnikService";
 import { useEffect, useState } from "react";
 
 
-export default function RadnikDetaljnije (){
+export default function RadniciDetaljnije (){
     const navigate = useNavigate();
     const routeParams = useParams();
     const [radnik,setRadnici] = useState({});
@@ -45,11 +45,12 @@ export default function RadnikDetaljnije (){
         {
             ime: podaci.get('ime'),
             prezime: podaci.get('prezime'),
-            oiB: podaci.get('oib'),
+            oib: podaci.get('oib'),
             datumZaposlenja: podaci.get('datumzaposlenja'),
             iban: podaci.get('iban'),
             cijenaRadnogSata:parseFloat(podaci.get('cijenaRadnogSata')),
             koeficijentRadnogMjesta:parseFloat(podaci.get('koeficijentRadnogMjesta')),
+            osnovniOsobniOdbitak: parseFloat(podaci.get('osnovniosobniodbitak')),
           };
 
           //console.log(JSON.stringify(smjer));
@@ -80,14 +81,14 @@ export default function RadnikDetaljnije (){
                     <Form.Label>OiB</Form.Label>
                     <Form.Control 
                         type="text"
-                        defaultValue={radnik.oiB}
+                        defaultValue={radnik.oib}
                         name="oib"/>
                 </Form.Group>
                 <Form.Group controlId="datumzaposlenja">
                     <Form.Label>DatumZaposlenja</Form.Label>
                     <Form.Control 
                         type="text"
-                        defaultValue={radnik.datumZaposlenja}
+                        defaultValue={radnik.datumzaposlenja}
                         name="datumzaposlenja"/>
                 </Form.Group>
                 <Form.Group controlId="iban">
@@ -124,14 +125,6 @@ export default function RadnikDetaljnije (){
                         <RiArrowGoBackFill size={15} />    
                     Odustani
                     </Link>
-                </Col>
-                <Col>
-                    <Button
-                        variant="primary"
-                        type="submit">
-                        <RiArrowGoForwardFill size ={15} />
-                    Promjeni radnika 
-                    </Button>
                 </Col>
             </Row>
             </Form>

@@ -75,7 +75,7 @@ export default function RadniciPregled (){
                             <td className="sredina">
                                 <Button
                                     variant="normal"
-                                    onClick={()=>{navigate(`/radnici/${radnik.sifra}`)}}>
+                                    onClick={()=>{navigate(`/radnici/detaljnije/${radnik.sifra}`)}}>
                                     <BiSolidUserDetail  
                                      color="blue"
                                     
