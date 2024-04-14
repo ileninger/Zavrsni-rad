@@ -46,7 +46,7 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.DatumObracuna = dto.datumobracuna;
             ObracunNakonUnosa(entitet,dto.radnikSifra, dto.placaSifra, dto.podacizaobracunSifra);
             //entitet.Bruto_I = dto.brutoI;
-            //entitet.Bruto_II = dto.brutoII;
+            //entitet.Dohodak = dto.brutoII;
             //entitet.PoreznaOsnovicaPorezaNaDohodak = dto.poreznaosnovicaporezanadohodak;
             //entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
             //entitet.IznosZaPrviMirovinskiStup = dto.iznoszaprvimirovinskistup;
@@ -70,17 +70,17 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.IznosZaPrviMirovinskiStup = (podacizaobracun.PostotakZaPrviMirovinskiStup / 100) * entitet.Bruto_I;
             entitet.IznosZaDrugiMirovinskiStup = (podacizaobracun.PostotakZaDrugiMirovinskiStup/100)* entitet.Bruto_I;
 
-            entitet.Bruto_II = entitet.Bruto_I - entitet.IznosZaDrugiMirovinskiStup - entitet.IznosZaPrviMirovinskiStup;
+            entitet.Dohodak = entitet.Bruto_I - entitet.IznosZaDrugiMirovinskiStup - entitet.IznosZaPrviMirovinskiStup;
             entitet.OsnovniOsobniOdbitak = radnik.OsnovniOsobniOdbitak; 
-            entitet.PoreznaOsnovicaPorezaNaDohodak = entitet.Bruto_II - entitet.OsnovniOsobniOdbitak;
+            entitet.PoreznaOsnovicaPorezaNaDohodak = entitet.Dohodak - entitet.OsnovniOsobniOdbitak;
             if (entitet.PoreznaOsnovicaPorezaNaDohodak < 0)
             {
                 entitet.PoreznaOsnovicaPorezaNaDohodak = 0;
-                entitet.NetoIznosZaIsplatu = entitet.Bruto_II;
+                entitet.NetoIznosZaIsplatu = entitet.Dohodak;
             }
             else
             {
-                entitet.NetoIznosZaIsplatu = entitet.Bruto_II - ((entitet.PoreznaOsnovicaPorezaNaDohodak - entitet.OsnovniOsobniOdbitak) * podacizaobracun.StopaPorezaNaDohodak / 100);
+                entitet.NetoIznosZaIsplatu = entitet.Dohodak - ((entitet.PoreznaOsnovicaPorezaNaDohodak - entitet.OsnovniOsobniOdbitak) * podacizaobracun.StopaPorezaNaDohodak / 100);
             }
 
 

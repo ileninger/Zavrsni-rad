@@ -30,7 +30,7 @@ namespace WebApi_ZavrsniRad.Mappers
                      entitet.Placa.BrojRadnihSati == null ? 0 : entitet.Placa.BrojRadnihSati,
                      entitet.DatumObracuna ?? DateTime.MinValue,
                      entitet.Bruto_I ?? 0,
-                     entitet.Bruto_II ?? 0,
+                     entitet.Dohodak ?? 0,
                      entitet.OsnovniOsobniOdbitak ?? 0,
                      entitet.IznosZaPrviMirovinskiStup ?? 0,
                      entitet.IznosZaDrugiMirovinskiStup ?? 0,
@@ -62,7 +62,7 @@ namespace WebApi_ZavrsniRad.Mappers
 
 
                         entitet.Bruto_I ?? 0,
-                        entitet.Bruto_II ?? 0,
+                        entitet.Dohodak ?? 0,
                         entitet.PoreznaOsnovicaPorezaNaDohodak ?? 0,
                         entitet.OsnovniOsobniOdbitak ?? 0,
                         entitet.IznosZaPrviMirovinskiStup ?? 0,

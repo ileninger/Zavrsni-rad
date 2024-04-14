@@ -28,7 +28,7 @@ namespace WebApi_ZavrsniRad.Models
         public decimal? Bruto_I { get; set; }
 
         //BrurtoII = BrutoI - (MIO I + MIO II) - služi kao porezna osnovica
-        public decimal? Bruto_II { get; set; }
+        public decimal? Dohodak { get; set; }
 
         /// <summary>
         /// Porezna osnovica

@@ -105,7 +105,7 @@ export default function PlacaPomjeni() {
       podacizaobracunSifra: parseInt(podaci.get('podacizaobracune')),
       //datumobracuna:datumobracuna,
       brutoI: parseFloat(podaci.get('brutoI')),
-      brutoII: parseFloat(podaci.get('brutoII')),
+      dohodak: parseFloat(podaci.get('dohodak')),
       poreznaosnovicaporezanadohodak: parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
       osnovniosobniodbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
       udiozaprvimirovinskistup: parseFloat(podaci.get('udiozaprvimirovinskistup')),
@@ -168,12 +168,12 @@ export default function PlacaPomjeni() {
           />
         </Form.Group>
         
-        <Form.Group controlId="brutoII">
-          <Form.Label>Bruto II.</Form.Label>
+        <Form.Group controlId="dohodak">
+          <Form.Label>Dohodak</Form.Label>
           <Form.Control
             type="text"
-            name="brutoII"
-            placeholder='Bruto II.'
+            name="dohodak"
+            placeholder='Dohodak'
           />
         </Form.Group>
         <Form.Group controlId="poreznaosnovicaporezanadohodak">
