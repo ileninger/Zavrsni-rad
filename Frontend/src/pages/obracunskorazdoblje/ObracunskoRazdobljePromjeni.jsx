@@ -82,16 +82,16 @@ export default function ObracunskoRazdobljePromjeni() {
                 <Form.Group controlId="datumpocetkaplace">
                     <Form.Label>Datum početka obračunskog razdoblja </Form.Label>
                     <Form.Control
-                        type="text"
+                        type="date"
                         name="datumpocetkaplace"
                         defaultValue={obracunskorazdoblje.datumpocetkaplace}
 
                     />
                 </Form.Group>
                 <Form.Group controlId="datumkrajaplace">
-                    <Form.Label>Datum kraja obračunskog razdoblja </Form.Label>
+                    <Form.Label>Datum završetka obračunskog razdoblja </Form.Label>
                     <Form.Control
-                        type="text"
+                        type="date"
                         name="datumkrajaplace"
                         defaultValue={obracunskorazdoblje.datumkrajaplace}
                     />

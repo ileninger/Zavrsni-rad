@@ -8,7 +8,7 @@ export default function Pocetna(){
         <>
         <Container>
 
-            Dobro došli u aplikaciju za obračun plača
+            Dobro došli u aplikaciju za obračun plaća
 
         </Container>
         </>

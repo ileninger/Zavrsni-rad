@@ -50,7 +50,7 @@ export default function RadniciPomjeni() {
             ime: podaci.get('ime'),
             prezime: podaci.get('prezime'),
             oib: podaci.get('oib'),
-            datumZaposlenja: podaci.get('datumzaposlenja'),
+            datumzaposlenja: podaci.get('datumzaposlenja'),
             iban: podaci.get('iban'),
             cijenaRadnogSata: parseFloat(podaci.get('cijenaRadnogSata')),
             koeficijentRadnogMjesta: parseFloat(podaci.get('koeficijentRadnogMjesta')),

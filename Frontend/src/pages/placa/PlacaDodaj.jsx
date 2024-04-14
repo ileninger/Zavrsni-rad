@@ -123,7 +123,7 @@ export default function PlacaDodaj() {
           <Form.Control
             type="text"
             name="naziv"
-            placeholder='naziv'
+            placeholder='Naziv plaće'
           />
         </Form.Group>
 
@@ -236,7 +236,7 @@ export default function PlacaDodaj() {
           </Col>
           <Col>
             <Button variant='primary' className='gumb' type='submit'>
-              Dodaj Plaču
+              Dodaj plaću
             </Button>
           </Col>
         </Row>

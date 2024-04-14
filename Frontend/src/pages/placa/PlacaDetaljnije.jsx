@@ -270,7 +270,7 @@ export default function PlacaDetaljnije() {
               className="btn btn-danger"
               to={RoutesNames.PLACA_PREGLED}>
               <RiArrowGoBackFill size={15} />
-              Odustani
+              Vrati se
             </Link>
           </Col>
         </Row>

@@ -69,11 +69,11 @@ export default function ObracunskoRazdobljeDodaj() {
                     />
                 </Form.Group>
                 <Form.Group controlId="datumkrajaplace">
-                    <Form.Label>Datum kraja obračunskog razdoblja </Form.Label>
+                    <Form.Label>Datum završetka obračunskog razdoblja </Form.Label>
                     <Form.Control
                         type="text"
                         name="datumkrajaplace"
-                        placeholder='Datum kraja obračunskog razdoblja'
+                        placeholder='Datum završetka obračunskog razdoblja'
                     />
                 </Form.Group>
                 <Row className="akcije">

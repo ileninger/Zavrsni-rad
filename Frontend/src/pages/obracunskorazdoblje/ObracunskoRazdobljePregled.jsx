@@ -58,14 +58,14 @@ export default function ObracunskoRazdobljePregled (){
                         size='30'
                         className="lijevo"
                     />
-                        Dodaj novog ranika
+                        Dodaj novo obračunsko razdoblje
                     </Link>
          
             <Table striped bordered hover responsive className="table">
                 <thead>
                     <tr>
-                        <th>Naziv Plaće</th>
-                        <th>Početak obračunskog razdoblja</th>
+                        <th className="sredina">Naziv</th>
+                        <th className="sredina">Početak obračunskog razdoblja</th>
                         <th className="sredina">Kraj obračunskog razdoblja</th>
                         <th className="sredina">Broj radnih sati </th>
                         <th className="sredina">Akcija</th>

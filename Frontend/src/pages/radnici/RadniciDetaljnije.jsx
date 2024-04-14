@@ -140,7 +140,7 @@ export default function RadniciDetaljnije() {
                             className="btn btn-danger"
                             to={RoutesNames.RADNICI_PREGLED}>
                             <RiArrowGoBackFill size={15} />
-                            Odustani
+                            Vrati se
                         </Link>
                     </Col>
                 </Row>
