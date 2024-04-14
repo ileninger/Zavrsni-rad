@@ -60,7 +60,6 @@ export default function PodaciZaObracunePregled (){
                     <tr>
 
                         <th className="sredina">Naziv podataka za obracun odbitaka</th>
-                        <th className="sredina">Osnovni osobni odbitak</th>
                         <th className="sredina">Udio za prvi mirovinski stup</th>
                         <th className="sredina">Udio za drugi mirovinski stup</th>
                         <th className="sredina">Stopa poreza na dohodak</th>
@@ -72,22 +71,6 @@ export default function PodaciZaObracunePregled (){
                         <tr key={index}>
 
                             <td className="sredina">{podacizaobracune.naziv}</td>
-
-                            <td className={podacizaobracune.osnovniosobniodbitak==null ? 'sredina' : 'sredina'}>
-                                {podacizaobracune.osnovniosobniodbitak==null 
-                                ? 'Nije definirano'
-                                :
-                                    <NumericFormat 
-                                    value={podacizaobracune.osnovniosobniodbitak}
-                                    displayType={'text'}
-                                    thousandSeparator='.'
-                                    decimalSeparator=','
-                                    prefix={'€'}
-                                    decimalScale={2}
-                                    fixedDecimalScale
-                                    />
-                                } 
-                            </td>
                             <td className={podacizaobracune.postotakzaprvimirovinskistup==null ? 'sredina' : 'sredina'}>
                                 {podacizaobracune.postotakzaprvimirovinskistup==null 
                                 ? 'Nije definirano'

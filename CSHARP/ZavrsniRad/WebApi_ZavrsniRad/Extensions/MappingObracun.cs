@@ -71,7 +71,7 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.IznosZaDrugiMirovinskiStup = (podacizaobracun.PostotakZaDrugiMirovinskiStup/100)* entitet.Bruto_I;
 
             entitet.Bruto_II = entitet.Bruto_I - entitet.IznosZaDrugiMirovinskiStup - entitet.IznosZaPrviMirovinskiStup;
-            entitet.OsnovniOsobniOdbitak = podacizaobracun.OsnovniOsobniOdbitak; 
+            entitet.OsnovniOsobniOdbitak = radnik.OsnovniOsobniOdbitak; 
             entitet.PoreznaOsnovicaPorezaNaDohodak = entitet.Bruto_II - entitet.OsnovniOsobniOdbitak;
             if (entitet.PoreznaOsnovicaPorezaNaDohodak < 0)
             {

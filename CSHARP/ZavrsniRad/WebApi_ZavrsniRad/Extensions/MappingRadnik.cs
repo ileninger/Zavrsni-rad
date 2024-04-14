@@ -43,6 +43,7 @@ namespace WebApi_ZavrsniRad.Extensions
             entitet.Iban = dto.iban;
             entitet.CijenaRadnogSata = dto.cijenaradnogsata;
             entitet.KoeficijentRadnogMjesta = dto.koeficijentradnogmjesta;
+            entitet.OsnovniOsobniOdbitak = dto.osnovniosobniodbitak;
             return entitet;
         }
 

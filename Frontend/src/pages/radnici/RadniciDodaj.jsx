@@ -32,6 +32,7 @@ export default function RadniciDodaj (){
             iban: podaci.get('iban'),
             cijenaRadnogSata:parseFloat(podaci.get('cijenaRadnogSata')),
             koeficijentRadnogMjesta:parseFloat(podaci.get('koeficijentRadnogMjesta')),
+            osnovniOsobniOdbitak: parseFloat(podaci.get('osnovniosobniodbitak')),
           };
 
           //console.log(JSON.stringify(smjer));
@@ -102,6 +103,16 @@ export default function RadniciDodaj (){
                         type="text"
                         name="koeficijentRadnogMjesta"
                         placeholder='Koeficijent radnog mjesta'
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="osnovniosobniodbitak">
+                    <Form.Label>Osobni osobni odbitak </Form.Label>
+                    <Form.Control 
+                        type="text"
+                        name="osnovniosobniodbitak"
+                        placeholder='Osobni osobni odbitak'
+                        
                     />
                 </Form.Group>
             <Row className="akcije">

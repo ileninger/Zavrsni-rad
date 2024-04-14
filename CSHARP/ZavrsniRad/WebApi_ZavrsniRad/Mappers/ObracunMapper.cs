@@ -22,7 +22,7 @@ namespace WebApi_ZavrsniRad.Mappers
                      entitet.Radnik.CijenaRadnogSata == null ? 0 : entitet.Radnik.CijenaRadnogSata,
                      entitet.Radnik.KoeficijentRadnogMjesta == null ? 0 : entitet.Radnik.KoeficijentRadnogMjesta,
                      entitet.PodaciZaObracun.Naziv == null ? "" : entitet.PodaciZaObracun.Naziv,
-                     entitet.PodaciZaObracun.OsnovniOsobniOdbitak == null ? 0 : entitet.PodaciZaObracun.OsnovniOsobniOdbitak,
+                     entitet.Radnik.OsnovniOsobniOdbitak == null ? 0 : entitet.Radnik.OsnovniOsobniOdbitak,
                      entitet.PodaciZaObracun.PostotakZaPrviMirovinskiStup == null ? 0 : entitet.PodaciZaObracun.PostotakZaPrviMirovinskiStup,
                      entitet.PodaciZaObracun.PostotakZaDrugiMirovinskiStup == null ? 0 : entitet.PodaciZaObracun.PostotakZaDrugiMirovinskiStup,
                      entitet.PodaciZaObracun.StopaPorezaNaDohodak == null ? 0 : entitet.PodaciZaObracun.StopaPorezaNaDohodak,

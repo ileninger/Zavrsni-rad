@@ -11,10 +11,6 @@ namespace WebApi_ZavrsniRad.Models
 
         public string? Naziv{ get; set; }
         /// <summary>
-        /// Osnovni osobni odbitak
-        /// </summary>
-        public decimal? OsnovniOsobniOdbitak { get; set; }
-        /// <summary>
         /// Postotak koji se odvaja za prvi mirovinski stup
         /// </summary>
         public decimal? PostotakZaPrviMirovinskiStup { get; set; }

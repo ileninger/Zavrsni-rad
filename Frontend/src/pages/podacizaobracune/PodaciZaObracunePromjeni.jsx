@@ -46,7 +46,6 @@ export default function PodaciZaObracunePromjeni() {
         const podacizaobracune =
         {
             naziv:podaci.get('naziv'),
-            osnovniOsobniOdbitak: parseFloat(podaci.get('osnovniosobniodbitak')),
             postotakZaPrviMirovinskiStup: parseFloat(podaci.get('postotakzaprvimirovinskistup')),
             postotakZaDrugiMirovinskiStup: parseFloat(podaci.get('postotakzadrugimirovinskistup')),
             stopaPorezaNaDohodak: parseFloat(podaci.get('stopaporezanadohodak')),
