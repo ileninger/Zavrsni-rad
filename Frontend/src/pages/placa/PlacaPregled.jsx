@@ -88,7 +88,7 @@ export default function PlacaPregled (){
                             <td className="sredina">
                                 <Button
                                     variant="normal"
-                                    onClick={()=>{navigate(`/radnici/${radnik.sifra}`)}}>
+                                    onClick={()=>{navigate(`/placa/${placa.sifra}`)}}>
                                     <BsDatabaseFillGear 
                                      color="blue"
                                     

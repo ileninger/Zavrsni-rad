@@ -25,7 +25,7 @@ import ObracunskoRazdobljePromjeni from "./pages/obracunskorazdoblje/ObracunskoR
 import PlacaPregled from "./pages/placa/PlacaPregled"
 import PlacaDodaj from "./pages/placa/PlacaDodaj"
 import PlacaPomjeni from "./pages/placa/PlacaPomjeni"
-
+import PlacaDetaljnije from "./pages/placa/PlacaDetaljnije"
 
 function App() {
 
@@ -53,6 +53,7 @@ function App() {
         <Route path={RoutesNames.PLACA_PREGLED} element ={<PlacaPregled/>} />
         <Route path={RoutesNames.PLACA_DODAJ} element ={<PlacaDodaj/>} />
         <Route path={RoutesNames.PLACA_PROMJENI} element ={<PlacaPomjeni/>} />
+        <Route path={RoutesNames.PLACA_DETALJNIJE} element ={<PlacaDetaljnije/>} />
 
 
 

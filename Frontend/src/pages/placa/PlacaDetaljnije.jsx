@@ -10,11 +10,11 @@ import RadnikService from "../../services/RadnikService";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
 import { RoutesNames } from '../../constants';
 import PlacaService from '../../services/PlacaService';
-import { RiArrowGoBackFill, RiArrowGoForwardFill } from 'react-icons/ri';
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 
 
-export default function PlacaPomjeni() {
+export default function PlacaDetaljnije() {
   const navigate = useNavigate();
   const routeParams = useParams();
 
@@ -120,6 +120,7 @@ export default function PlacaPomjeni() {
   return (
     <Container className='mt-4'>
       <Form onSubmit={handleSubmit}>
+        
         <Form.Group controlId="naziv">
           <Form.Label>Naziv</Form.Label>
           <Form.Control
@@ -139,7 +140,7 @@ export default function PlacaPomjeni() {
             ))}
           </Form.Select>
         </Form.Group>
-       
+        
         <Form.Group className='mb-3' controlId='radnik'>
           <Form.Label>Radnik</Form.Label>
           <Form.Select name='radnik' onChange={(e) => { setRadnikSifra(e.target.value) }}>
@@ -272,16 +273,8 @@ export default function PlacaPomjeni() {
               Odustani
             </Link>
           </Col>
-          <Col>
-            <Button
-              variant="primary"
-              type="submit">
-              <RiArrowGoForwardFill size={15} />
-              Promjeni plaću
-          </Button>
-        </Col>
-      </Row>
-    </Form>
-    </Container >
+        </Row>
+      </Form>
+    </Container>
   );
 }
