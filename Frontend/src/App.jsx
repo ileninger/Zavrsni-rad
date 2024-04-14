@@ -43,6 +43,8 @@ function App() {
         <Route path={RoutesNames.PODACIZAOBRACUNE_PREGLED} element ={<PodaciZaObracunePregled/>} />
         <Route path={RoutesNames.PODACIZAOBRACUNE_DODAJ} element ={<PodaciZaObracuneDodaj/>} />
         <Route path={RoutesNames.PODACIZAOBRACUNE_PROMJENI} element ={<PodaciZaObracunePromjeni/>} />
+        
+
 
         <Route path={RoutesNames.OBRACUNSKORAZDOBLJE_PREGLED} element ={<ObracunskoRazdobljePregled/>} />
         <Route path={RoutesNames.OBRACUNSKORAZDOBLJE_DODAJ} element ={<ObracunskoRazdobljeDodaj/>} />

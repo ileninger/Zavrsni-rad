@@ -15,6 +15,9 @@ import PlacaService from "../../services/ObracunskoRazdobljeService";
 import ObračunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
 import useLoading from "../../hooks/useLoading";
 
+import { FaCalendarPlus } from "react-icons/fa";
+import { FaCalendarMinus } from "react-icons/fa6";
+import { FaCalendarDay } from "react-icons/fa6";
 
 export default function ObracunskoRazdobljePregled (){
 
@@ -50,14 +53,14 @@ export default function ObracunskoRazdobljePregled (){
     return (
         <Container>
 
-                    {/* <Link to={RoutesNames.RADNICI_DODAJ} className="btn gumb">
-                    <FaAddressCard 
+                    * <Link to={RoutesNames.OBRACUNSKORAZDOBLJE_DODAJ} className="btn gumb">
+                    <FaCalendarPlus 
                         size='30'
                         className="lijevo"
                     />
                         Dodaj novog ranika
                     </Link>
-         */}
+         
             <Table striped bordered hover responsive className="table">
                 <thead>
                     <tr>
@@ -94,27 +97,17 @@ export default function ObracunskoRazdobljePregled (){
                                 <Button
                                     variant="normal"
                                     onClick={()=>{navigate(`/obracunskorazdoblje/${obracunskorazdoblje.sifra}`)}}>
-                                    <FaUserEdit 
+                                    <FaCalendarDay   
                                      color="blue"
                                     
                                     size={25} />
                                 </Button>
-                                     &nbsp;&nbsp;&nbsp;
-                                     <Button
-                                    variant="normal"
-                                    onClick={()=>{navigate(`/placa/${obracunskorazdoblje.sifra}`)}}>
-                                    <FaUserEdit 
-                                     color="blue"
-                                    
-                                    size={25} />
-                                </Button>
-                                &nbsp;&nbsp;&nbsp;
                                 <Button
                                     variant="normal"
                                     onClick={()=>obrisi(obracunskorazdoblje.sifra)}
                                 >
        
-                                    <FaUserMinus 
+                                    <FaCalendarMinus 
                                     size={25}
                                     color="red" 
                                     />

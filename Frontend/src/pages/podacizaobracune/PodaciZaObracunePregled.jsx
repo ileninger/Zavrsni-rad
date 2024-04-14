@@ -8,6 +8,11 @@ import { FaAddressCard, FaSearch } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
 import { FaUserMinus } from "react-icons/fa6";
 
+import { BsDatabaseFillAdd } from "react-icons/bs"
+import { BsDatabaseFillDash } from "react-icons/bs";
+import { BsDatabaseFillGear } from "react-icons/bs";
+
+
 import { RoutesNames } from "../../constants";
 import moment from "moment/moment";
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
@@ -48,7 +53,7 @@ export default function PodaciZaObracunePregled (){
         <Container>
  
                     <Link to={RoutesNames.PODACIZAOBRACUNE_DODAJ} className="btn gumb">
-                    <FaAddressCard 
+                    <BsDatabaseFillAdd 
                         size='30'
                         className="lijevo"
                     />
@@ -122,7 +127,7 @@ export default function PodaciZaObracunePregled (){
                                     variant="normal"
                                     onClick={()=>{navigate(`/podaciZaObracune/${podacizaobracune.sifra}`)}}
                                     >
-                                    <FaUserEdit 
+                                    <BsDatabaseFillGear  
                                      color="blue"
                                     
                                     size={25} />
@@ -133,7 +138,7 @@ export default function PodaciZaObracunePregled (){
                                     onClick={()=>obrisiPodatkeZaObracun(podacizaobracune.sifra)}
                                 >
        
-                                    <FaUserMinus 
+                                    <BsDatabaseFillDash  
                                     size={25}
                                     color="red" 
                                     />

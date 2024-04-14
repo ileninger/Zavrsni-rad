@@ -14,6 +14,10 @@ import moment from "moment/moment";
 import PlacaService from "../../services/PlacaService";
 import { AxiosError, isAxiosError } from "axios";
 
+import { GrMoney } from "react-icons/gr";
+import { BsDatabaseFillExclamation } from "react-icons/bs";
+import { BsDatabaseFillDash } from "react-icons/bs";
+import { BsDatabaseFillGear } from "react-icons/bs";
 
 export default function PlacaPregled (){
 
@@ -48,11 +52,11 @@ export default function PlacaPregled (){
         <Container>
 
                     <Link to={RoutesNames.PLACA_DODAJ} className="btn gumb">
-                    <FaAddressCard 
+                    <GrMoney  
                         size='30'
                         className="lijevo"
                     />
-                        Dodaj novu plaču
+                         Dodaj novu plaču
                     </Link>
         
             <Table striped bordered hover responsive className="table">
@@ -72,8 +76,8 @@ export default function PlacaPregled (){
                             <td className="sredina">
                                 <Button
                                     variant="normal"
-                                    onClick={()=>{navigate(`/placa/${placa.sifra}`)}}>
-                                    <BiSolidUserDetail  
+                                    onClick={()=>{navigate(`/placa/deteljnije/${placa.sifra}`)}}>
+                                    <BsDatabaseFillExclamation   
                                      color="blue"
                                     
                                     size={25} />
@@ -85,7 +89,7 @@ export default function PlacaPregled (){
                                 <Button
                                     variant="normal"
                                     onClick={()=>{navigate(`/radnici/${radnik.sifra}`)}}>
-                                    <FaUserEdit 
+                                    <BsDatabaseFillGear 
                                      color="blue"
                                     
                                     size={25} />
@@ -96,7 +100,7 @@ export default function PlacaPregled (){
                                     onClick={()=>obrisi(placa.sifra)}
                                 >
        
-                                    <FaUserMinus 
+                                    <BsDatabaseFillDash 
                                     size={25}
                                     color="red" 
                                     />
