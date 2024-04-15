@@ -22,7 +22,6 @@ namespace WebApi_ZavrsniRad.Controllers
             _context = context;
         }
 
-        public object BCrypt { get; private set; }
 
         [HttpPost("token")]
         public IActionResult GenerirajToken(OperaterDTO operater)
@@ -44,6 +43,10 @@ namespace WebApi_ZavrsniRad.Controllers
                 // nije dobro korisničko ime ili lozinka
                 return StatusCode(StatusCodes.Status403Forbidden, "Niste autorizirani, ne mogu naći operatera");
             }
+
+
+
+
 
 
             if (!BCrypt.Net.BCrypt.Verify(operater.password, operBaza.Lozinka))
