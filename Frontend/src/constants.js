@@ -18,7 +18,9 @@ export const RoutesNames = {
     PLACA_PREGLED:'/placa',
     PLACA_DODAJ:'/placa/dodaj',
     PLACA_PROMJENI:'/placa/:sifra',
-    PLACA_DETALJNIJE:'/placa/deteljnije/:sifra'
+    PLACA_DETALJNIJE:'/placa/deteljnije/:sifra',
+
+    LOGIN: '/login'
 
 
 

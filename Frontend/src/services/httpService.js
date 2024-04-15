@@ -7,3 +7,30 @@ export const httpService=axios.create({
     }
 });
 
+export function obradiUspjeh(res){
+    if(App.DEV) console.table(res.data);
+    return {ok: true, podaci: res.data};
+}
+
+export function obradiGresku(e){
+
+    if (!e.response) {
+        return {ok: false, podaci: [kreirajPoruku('Problem s mrežom', 'nema odgovora od servera')]};
+    }
+
+    if(e.code == AxiosError.ERR_NETWORK){
+        return {ok: false, podaci: [kreirajPoruku('Problem s mrežom', 'Pokušajte kasnije')]};
+    }
+        
+    switch(e.response.status){
+        case 503:
+            return {ok: false, podaci: [kreirajPoruku('Server problem', e.response.data)]};
+        case 400:
+            if (typeof(e.response.data.errors) !== 'undefined'){
+                return odradi400(e.response.data.errors);
+            }
+            return {ok: false, podaci: [kreirajPoruku('Problem u podacima', e.response.data)]};
+    }
+
+    return {ok: false, podaci: e};
+}

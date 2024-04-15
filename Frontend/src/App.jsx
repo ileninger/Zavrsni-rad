@@ -27,12 +27,20 @@ import PlacaDodaj from "./pages/placa/PlacaDodaj"
 import PlacaPomjeni from "./pages/placa/PlacaPomjeni"
 import PlacaDetaljnije from "./pages/placa/PlacaDetaljnije"
 
+import Login from "./pages/Login"
+import useAuth from "./hooks/useAuth"
+
 function App() {
+
+  const { isLoggedIn } = useAuth();
 
   return (
     <>
       <NavBar />
       <Routes>
+      <Route path={RoutesNames.HOME} element={<Pocetna />} />
+      {isLoggedIn ? (
+        <>
         <Route path={RoutesNames.HOME} element ={<Pocetna/>} />
 
         <Route path={RoutesNames.RADNICI_PREGLED} element ={<RadniciPregled/>} />
@@ -55,7 +63,12 @@ function App() {
         <Route path={RoutesNames.PLACA_PROMJENI} element ={<PlacaPomjeni/>} />
         <Route path={RoutesNames.PLACA_DETALJNIJE} element ={<PlacaDetaljnije/>} />
 
-
+        </>
+        ) : (
+          <>
+            <Route path={RoutesNames.LOGIN} element={<Login />} />
+          </>
+        )}
 
       </Routes>
     </>
