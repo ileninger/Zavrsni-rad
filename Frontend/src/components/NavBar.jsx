@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { RoutesNames } from '../constants';
 
 import './NavBar.css';
+import useAuth from '../hooks/useAuth';
+
 
 function NavBar() {
 
   const navigate = useNavigate();
+  const { logout, isLoggedIn } = useAuth();
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -20,6 +23,10 @@ function NavBar() {
         >
           Obračun plaća APP
         </Navbar.Brand>
+
+        {isLoggedIn ? (
+          <>
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -82,8 +89,23 @@ function NavBar() {
 
         </Navbar.Collapse>
         <Navbar.Collapse className='justify-content-end'>
+          <Nav>
+          <Nav.Link onClick={logout}>Odjava</Nav.Link>
           <Nav.Link target='_blank' href='https://ileninger-001-site1.anytempurl.com/swagger/index.html'>API Dokumentacija</Nav.Link>
+          </Nav>
         </Navbar.Collapse>
+
+        </>
+         ) : (
+          <>
+          <Navbar.Collapse className="justify-content-end">
+            <Nav.Link onClick={() => navigate(RoutesNames.LOGIN)}>
+              Prijava
+            </Nav.Link>
+          </Navbar.Collapse>
+          </>
+        )}
+        
       </Container>
     </Navbar>
   );
