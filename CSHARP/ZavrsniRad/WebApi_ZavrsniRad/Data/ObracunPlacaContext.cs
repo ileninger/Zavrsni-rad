@@ -31,6 +31,8 @@ namespace WebApi_ZavrsniRad.Data
 
         public DbSet <Obracun> Obracuni { get; set; }
 
+        public DbSet<Operater> Operateri { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

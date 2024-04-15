@@ -33,4 +33,10 @@ namespace WebApi_ZavrsniRad.Models
        decimal brutoI, decimal dohodak, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
        decimal iznoszaprvimirovinskistup, decimal iznoszadrugimirovinskistup, decimal netoiznoszaisplatu, decimal iznosporezanadohodak);
     public record SlikaDTO([Required(ErrorMessage = "Base64 zapis slike obavezno")] string Base64);
+
+    public record OperaterDTO(
+    [Required(ErrorMessage = "Email obavezno")]
+        string? email,
+    [Required(ErrorMessage = "Lozinka obavezno")]
+        string? password);
 }
