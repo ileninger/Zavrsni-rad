@@ -34,13 +34,13 @@ function NavBar() {
               <NavDropdown.Item
                 onClick={() => navigate(RoutesNames.PLACA_PREGLED)}
               >
-                Prikaži plaće
+                Pregled plaća
               </NavDropdown.Item>
 
               <NavDropdown.Item
                 onClick={() => navigate(RoutesNames.PLACA_DODAJ)}
               >
-                Izradin novu plaću
+                Dodaj novu plaću
               </NavDropdown.Item>
 
             </NavDropdown>

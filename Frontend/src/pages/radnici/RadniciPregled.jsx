@@ -53,7 +53,7 @@ export default function RadniciPregled (){
                         size='30'
                         className="lijevo"
                     />
-                        Dodaj novog ranika
+                        Dodaj novog radnika
                     </Link>
         
             <Table striped bordered hover responsive className="table">
