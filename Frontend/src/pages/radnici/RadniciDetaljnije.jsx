@@ -88,7 +88,7 @@ export default function RadniciDetaljnije() {
                         name="oib" />
                 </Form.Group>
                 <Form.Group controlId="datumzaposlenja">
-                    <Form.Label>DatumZaposlenja</Form.Label>
+                    <Form.Label>Datum zaposlenja</Form.Label>
                     <Form.Control
                         type="text"
                         defaultValue={radnik.datumzaposlenja}

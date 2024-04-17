@@ -106,14 +106,14 @@ export default function PlacaPomjeni() {
       placaSifra: parseInt(podaci.get('nazivplace')),
       radnikSifra: parseInt(podaci.get('radnik')),
       podacizaobracunSifra: parseInt(podaci.get('podacizaobracune')),
-      brutoI: parseFloat(podaci.get('brutoI')),
-      dohodak: parseFloat(podaci.get('dohodak')),
-      poreznaosnovicaporezanadohodak: parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
-      osnovniosobniodbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
-      udiozaprvimirovinskistup: parseFloat(podaci.get('udiozaprvimirovinskistup')),
-      udiozadrugimirovinskistup: parseFloat(podaci.get('udiozadrugimirovinskistup')),
-      iznosporezanadohodak: parseFloat(podaci.get('iznosporezanadohodak')),
-      netoiznoszaisplatu: parseFloat(podaci.get('netoiznoszaisplatu')),
+      // brutoI: parseFloat(podaci.get('brutoI')),
+      // dohodak: parseFloat(podaci.get('dohodak')),
+      // poreznaosnovicaporezanadohodak: parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
+      // osnovniosobniodbitak: parseFloat(podaci.get('osnovniOsobniOdbitak')),
+      // udiozaprvimirovinskistup: parseFloat(podaci.get('udiozaprvimirovinskistup')),
+      // udiozadrugimirovinskistup: parseFloat(podaci.get('udiozadrugimirovinskistup')),
+      // iznosporezanadohodak: parseFloat(podaci.get('iznosporezanadohodak')),
+      // netoiznoszaisplatu: parseFloat(podaci.get('netoiznoszaisplatu')),
     };
 
     //console.log(JSON.stringify(smjer));

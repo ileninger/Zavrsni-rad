@@ -63,13 +63,13 @@ export default function PlacaPregled (){
                         size='30'
                         className="lijevo"
                     />
-                         Dodaj novu plaču
+                         Dodaj novu plaću
                     </Link>
         
             <Table striped bordered hover responsive className="table">
                 <thead>
                     <tr>
-                        <th>Naziv Plače</th>
+                        <th>Naziv Plaće</th>
                         <th className="sredina">Broj radnih sati</th>
                         <th className="sredina"></th>
                         <th className="sredina">Akcija</th>

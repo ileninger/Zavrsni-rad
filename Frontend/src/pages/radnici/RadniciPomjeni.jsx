@@ -92,7 +92,7 @@ export default function RadniciPomjeni() {
                             name="oib" />
                     </Form.Group>
                     <Form.Group controlId="datumzaposlenja">
-                        <Form.Label>DatumZaposlenja</Form.Label>
+                        <Form.Label>Datum zaposlenja</Form.Label>
                         <Form.Control
                             type="date"
                             defaultValue={radnik.datumzaposlenja}
