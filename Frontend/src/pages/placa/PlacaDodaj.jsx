@@ -2,7 +2,7 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import moment from "moment";
-
+import useLoading from "../../hooks/useLoading";
 
 
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
@@ -17,6 +17,7 @@ import { PiMathOperations } from 'react-icons/pi';
 
 export default function PlacaDodaj() {
   const navigate = useNavigate();
+  const { showLoading, hideLoading } = useLoading();
 
   const [radnici, setRadnici] = useState([]);
   const [radnikSifra, setRadnikSifra] = useState(0);
@@ -53,9 +54,11 @@ export default function PlacaDodaj() {
   }
 
   async function ucitaj() {
+    showLoading();
     await dohvatiRadnike();
     await dohvatiObracunskoRazdoblje();
     await dohvatiPodatkeZaObracun();
+    hideLoading();
   }
 
   useEffect(() => {

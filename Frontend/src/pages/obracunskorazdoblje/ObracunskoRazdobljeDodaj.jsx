@@ -2,14 +2,17 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RiArrowGoBackFill } from "react-icons/ri"
 import { RiArrowGoForwardFill } from "react-icons/ri";
+import useLoading from "../../hooks/useLoading";
 
 import { RoutesNames } from "../../constants";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
 export default function ObracunskoRazdobljeDodaj() {
 
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dodajObracunskoRazdoblje(obracunskorazdoblje) {
+        showLoading();
         const odgovor = await ObracunskoRazdobljeService.dodaj(obracunskorazdoblje)
         if (odgovor.ok) {
             navigate(RoutesNames.OBRACUNSKORAZDOBLJE_PREGLED);
@@ -17,6 +20,7 @@ export default function ObracunskoRazdobljeDodaj() {
             console.log(odgovor);
             alert(odgovor.poruka);
         }
+        hideLoading();
     }
 
     function handleSubmit(e) {

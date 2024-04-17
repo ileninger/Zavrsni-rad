@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import RadnikService from "../../services/RadnikService";
-import { NumericFormat } from "react-number-format";
 import { Link,useNavigate } from "react-router-dom";
 import { FaAddressCard, FaSearch } from "react-icons/fa";
 //import { FaEdit } from "react-icons/fa";
@@ -10,7 +9,6 @@ import { FaUserMinus } from "react-icons/fa6";
 import { BiSolidUserDetail } from "react-icons/bi";
 
 import { RoutesNames } from "../../constants";
-import moment from "moment/moment";
 import useLoading from "../../hooks/useLoading";
 
 
@@ -29,6 +27,7 @@ export default function RadniciPregled (){
         .catch((e)=>{
             alert(e);
         });
+        hideLoading();
     } 
 
     async function obrisiRadnika(sifra){
@@ -38,6 +37,7 @@ export default function RadniciPregled (){
             alert(odgovor.poruka.data.poruka)
             dohvatiRadnike();
         }
+        hideLoading();
 
     }
 

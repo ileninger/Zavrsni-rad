@@ -11,12 +11,14 @@ import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeServic
 import { RoutesNames } from '../../constants';
 import PlacaService from '../../services/PlacaService';
 import { RiArrowGoBackFill } from 'react-icons/ri';
+import useLoading from "../../hooks/useLoading";
 
 
 
 export default function PlacaDetaljnije() {
   const navigate = useNavigate();
   const routeParams = useParams();
+  const { showLoading, hideLoading } = useLoading();
 
   const [placa, setPlace] = useState([]);
 
@@ -33,6 +35,7 @@ export default function PlacaDetaljnije() {
 
 
   async function dohvatiPlace() {
+    showLoading();
     await PlacaService.getBySifra(routeParams.sifra)
       .then((res) => {
         setPlace(res.data)
@@ -41,6 +44,7 @@ export default function PlacaDetaljnije() {
       .catch((e) => {
         alert(e.poruka);
       });
+      hideLoading();
   }
 
   async function dohvatiRadnike() {

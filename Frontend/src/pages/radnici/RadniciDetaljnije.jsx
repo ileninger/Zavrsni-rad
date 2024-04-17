@@ -1,18 +1,20 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RiArrowGoBackFill } from "react-icons/ri"
-import { RiArrowGoForwardFill } from "react-icons/ri";
 import { RoutesNames } from "../../constants";
 import RadnikService from "../../services/RadnikService";
 import { useEffect, useState } from "react";
+import useLoading from "../../hooks/useLoading";
 
 
 export default function RadniciDetaljnije() {
     const navigate = useNavigate();
     const routeParams = useParams();
     const [radnik, setRadnici] = useState({});
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiRadnike() {
+        showLoading();
         await RadnikService.getBySifra(routeParams.sifra)
             .then((res) => {
                 setRadnici(res.data)
@@ -20,6 +22,7 @@ export default function RadniciDetaljnije() {
             .catch((e) => {
                 alert(e.poruka);
             });
+            hideLoading();
     }
 
     useEffect(() => {

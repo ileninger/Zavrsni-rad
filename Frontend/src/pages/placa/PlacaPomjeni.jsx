@@ -1,7 +1,7 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import moment from "moment";
+import useLoading from "../../hooks/useLoading";
 
 
 
@@ -31,8 +31,11 @@ export default function PlacaPomjeni() {
 
   const typeaheadRef = useRef(null);
 
+  const { showLoading, hideLoading } = useLoading();
+
 
   async function dohvatiPlace() {
+    showLoading();
     await PlacaService.getBySifra(routeParams.sifra)
       .then((res) => {
         setPlace(res.data)
@@ -41,6 +44,7 @@ export default function PlacaPomjeni() {
       .catch((e) => {
         alert(e.poruka);
       });
+      hideLoading();
   }
 
   async function dohvatiRadnike() {
@@ -81,6 +85,7 @@ export default function PlacaPomjeni() {
   }, []);
 
   async function promjeniPlacu(placa) {
+    showLoading();
     const odgovor = await PlacaPomjeni.promjeni(routeParams.sifra, placa);
     if (odgovor.ok) {
       navigate(RoutesNames.RADNICI_PREGLED);
@@ -88,6 +93,7 @@ export default function PlacaPomjeni() {
       console.log(odgovor);
       alert(odgovor.poruka);
     }
+    hideLoading();
   }
 
   function handleSubmit(e) {

@@ -4,14 +4,15 @@ import { RiArrowGoBackFill } from "react-icons/ri"
 import { RiArrowGoForwardFill } from "react-icons/ri";
 import { RoutesNames } from "../../constants";
 import RadnikService from "../../services/RadnikService";
-
-import moment from "moment/moment";
+import useLoading from "../../hooks/useLoading";
 
 
 export default function RadniciDodaj (){
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dodajRadnika(radnik){
+        showLoading();
         const odgovor = await RadnikService.dodaj(radnik);
         if(odgovor.ok){
           navigate(RoutesNames.RADNICI_PREGLED);
@@ -19,6 +20,7 @@ export default function RadniciDodaj (){
           console.log(odgovor);
           alert(odgovor.poruka);
         }
+        hideLoading();
     }
     function handleSubmit(e){
         e.preventDefault();

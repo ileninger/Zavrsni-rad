@@ -6,14 +6,17 @@ import { useEffect, useState } from "react";
 
 import { RoutesNames } from "../../constants";
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
+import useLoading from "../../hooks/useLoading";
 
 
 export default function PodaciZaObracunePromjeni() {
     const navigate = useNavigate();
     const routeParams = useParams();
     const [podacizaobracune,setPodaciZaObracun] = useState({});
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiPodatkeZaObracun(){
+        showLoading();
         await PodaciZaObracuneService.getBySifra(routeParams.sifra)
         .then((res)=>{
             setPodaciZaObracun(res.data)
@@ -21,6 +24,7 @@ export default function PodaciZaObracunePromjeni() {
         .catch((e)=>{
             alert(e.poruka);
         });
+        hideLoading();
     }
 
     useEffect(()=>{

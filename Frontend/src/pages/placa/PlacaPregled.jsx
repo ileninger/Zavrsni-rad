@@ -18,13 +18,17 @@ import { GrMoney } from "react-icons/gr";
 import { BsDatabaseFillExclamation } from "react-icons/bs";
 import { BsDatabaseFillDash } from "react-icons/bs";
 import { BsDatabaseFillGear } from "react-icons/bs";
+import useLoading from "../../hooks/useLoading";
+
 
 export default function PlacaPregled (){
 
     const [place,setPlace] = useState ();
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiPlace (){
+        showLoading();
         await PlacaService.get()
         .then((res)=>{
                 setPlace(res.data);
@@ -34,13 +38,16 @@ export default function PlacaPregled (){
              if ((e.status != undefined))
                  alert(e);
         });
+        hideLoading();
     } 
 
     async function obrisi(sifra){
+        showLoading(); 
         const odgovor = await PlacaService.obrisi(sifra);
         if (odgovor.ok){
             dohvatiPlace();
         }
+        hideLoading();
 
     }
 

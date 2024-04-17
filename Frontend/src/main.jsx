@@ -20,6 +20,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </LoadingProvider>
       </ErrorProvider>
     </BrowserRouter>
-
   </React.StrictMode>,
 )

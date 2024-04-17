@@ -5,13 +5,15 @@ import { RiArrowGoForwardFill } from "react-icons/ri";
 
 import { RoutesNames } from "../../constants";
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
-
+import useLoading from "../../hooks/useLoading";
 
 export default function PodaciZaObracuneDodaj() {
 
     const navigate = useNavigate();
+    const { showLoading, hideLoading } = useLoading();
 
     async function dodajPodatkeZaObracunOdbitaka(podacizaobracune) {
+        showLoading();
         const odgovor = await PodaciZaObracuneService.dodaj(podacizaobracune)
         if (odgovor.ok) {
             navigate(RoutesNames.PODACIZAOBRACUNE_PREGLED);
@@ -19,6 +21,7 @@ export default function PodaciZaObracuneDodaj() {
             //console.log(odgovor);
             //alert(odgovor.poruka);
         }
+        hideLoading();
     }
 
     function handleSubmit(e) {

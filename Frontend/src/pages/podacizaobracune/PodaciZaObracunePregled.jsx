@@ -4,9 +4,6 @@ import RadnikService from "../../services/RadnikService";
 import { NumericFormat } from "react-number-format";
 import { Link,useNavigate } from "react-router-dom";
 import { FaAddressCard, FaSearch } from "react-icons/fa";
-//import { FaEdit } from "react-icons/fa";
-import { FaUserEdit } from "react-icons/fa";
-import { FaUserMinus } from "react-icons/fa6";
 
 import { BsDatabaseFillAdd } from "react-icons/bs"
 import { BsDatabaseFillDash } from "react-icons/bs";
@@ -14,7 +11,6 @@ import { BsDatabaseFillGear } from "react-icons/bs";
 
 
 import { RoutesNames } from "../../constants";
-import moment from "moment/moment";
 import PodaciZaObracuneService from "../../services/PodaciZaObracuneService";
 import useLoading from "../../hooks/useLoading";
 
@@ -33,15 +29,18 @@ export default function PodaciZaObracunePregled (){
         .catch((e)=>{
             alert(e);
         });
+        hideLoading();
     } 
 
     async function obrisiPodatkeZaObracun(sifra){
 
         const odgovor = await PodaciZaObracuneService.obrisiPodatkeZaObracune(sifra);
+        showLoading();  
         if (odgovor.ok){
             alert(odgovor.poruka.data.poruka)
             dohvatiPodatkeZaObracun();
         }
+        hideLoading();
 
     }
 

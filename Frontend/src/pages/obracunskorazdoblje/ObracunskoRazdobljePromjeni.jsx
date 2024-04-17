@@ -6,14 +6,16 @@ import { useEffect, useState } from "react";
 
 import { RoutesNames } from "../../constants";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
-
+import useLoading from "../../hooks/useLoading";
 
 export default function ObracunskoRazdobljePromjeni() {
     const navigate = useNavigate();
     const routeParams = useParams();
     const [obracunskorazdoblje,setObracunskoRazdoblje] = useState({});
+    const { showLoading, hideLoading } = useLoading();
 
     async function dohvatiObracunskoRazdoblje(){
+        showLoading();
         await ObracunskoRazdobljeService.getBySifra(routeParams.sifra)
         .then((res)=>{
             setObracunskoRazdoblje(res.data)
@@ -21,6 +23,7 @@ export default function ObracunskoRazdobljePromjeni() {
         .catch((e)=>{
             alert(e.poruka);
         });
+        hideLoading();
     }
 
     useEffect(()=>{

@@ -1,25 +1,23 @@
-import { Button, Col, Container, Form, Row,Image } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Image } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RiArrowGoBackFill } from "react-icons/ri"
 import { RiArrowGoForwardFill } from "react-icons/ri";
 import { RoutesNames } from "../../constants";
 import RadnikService from "../../services/RadnikService";
-import { useEffect, useState,useRef } from "react";
-import Cropper from 'react-cropper';
+import { useEffect, useState, useRef } from "react";
+import useLoading from "../../hooks/useLoading";
 
 
-import moment from "moment/moment";
 
 export default function RadniciPomjeni() {
     const navigate = useNavigate();
     const routeParams = useParams();
     const [radnik, setRadnici] = useState({});
-    const [trenutnaSlika, setTrenutnaSlika] = useState('');
-    const [slikaZaCrop, setSlikaZaCrop] = useState('');
-    const [slikaZaServer, setSlikaZaServer] = useState('');
-    const cropperRef = useRef(null);
+    const { showLoading, hideLoading } = useLoading();
+
 
     async function dohvatiRadnike() {
+        showLoading();
         await RadnikService.getBySifra(routeParams.sifra)
             .then((res) => {
                 setRadnici(res.data)
@@ -27,6 +25,7 @@ export default function RadniciPomjeni() {
             .catch((e) => {
                 alert(e.poruka);
             });
+        hideLoading();
     }
 
     useEffect(() => {
@@ -35,12 +34,15 @@ export default function RadniciPomjeni() {
     }, []);
 
     async function promjeniRadnika(radnik) {
+        showLoading();
         const odgovor = await RadnikService.promjeni(routeParams.sifra, radnik);
         if (odgovor.ok) {
             navigate(RoutesNames.RADNICI_PREGLED);
+            hideLoading();
         } else {
             console.log(odgovor);
             alert(odgovor.poruka);
+            hideLoading();
         }
     }
 
@@ -64,138 +66,99 @@ export default function RadniciPomjeni() {
         //console.log(JSON.stringify(smjer));
         promjeniRadnika(radnik);
     }
-
-
-
-    function onCrop() {
-        setSlikaZaServer(cropperRef.current.cropper.getCroppedCanvas().toDataURL());
-    }
-
-    function onChangeImage(e) {
-        e.preventDefault();
-
-        let files;
-        if (e.dataTransfer) {
-            files = e.dataTransfer.files;
-        } else if (e.target) {
-            files = e.target.files;
-        }
-        const reader = new FileReader();
-        reader.onload = () => {
-            setSlikaZaCrop(reader.result);
-        };
-        try {
-            reader.readAsDataURL(files[0]);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function spremiSliku() {
-        const base64 = slikaZaServer;
-
-        const odgovor = await RadnikService.postaviSliku(routeParams.sifra, { Base64: base64.replace('data:image/png;base64,', '') });
-        //Date.now je zbog toga što se src na image komponenti cache-ira
-        //pa kad promjenimo sliku url ostane isti i trenutna slika se ne updatea
-        setTrenutnaSlika(slikaZaServer);
-    }
-
-
-
-
     return (
         <Container>
             <Row>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="ime">
-                            <Form.Label>Ime</Form.Label>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="ime">
+                        <Form.Label>Ime</Form.Label>
+                        <Form.Control
+                            type="text"
+                            defaultValue={radnik.ime}
+                            name="ime" />
+                    </Form.Group>
+                    <Form.Group controlId="prezime">
+                        <Form.Label>Prezime</Form.Label>
+                        <Form.Control
+                            type="text"
+                            defaultValue={radnik.prezime}
+                            name="prezime" />
+                    </Form.Group>
+                    <Form.Group controlId="oib">
+                        <Form.Label>OiB</Form.Label>
+                        <Form.Control
+                            type="text"
+                            defaultValue={radnik.oib}
+                            name="oib" />
+                    </Form.Group>
+                    <Form.Group controlId="datumzaposlenja">
+                        <Form.Label>DatumZaposlenja</Form.Label>
+                        <Form.Control
+                            type="date"
+                            defaultValue={radnik.datumzaposlenja}
+                            name="datumzaposlenja" />
+                    </Form.Group>
+                    <Form.Group controlId="iban">
+                        <Form.Label>Iban</Form.Label>
+                        <Form.Control
+                            type="text"
+                            defaultValue={radnik.iban}
+                            name="iban" />
+                    </Form.Group>
+                    <Form.Group controlId="cijenaRadnogSata">
+                        <Form.Label>Cijena radnog sata</Form.Label>
+                        <div className="input-group">
                             <Form.Control
                                 type="text"
-                                defaultValue={radnik.ime}
-                                name="ime" />
-                        </Form.Group>
-                        <Form.Group controlId="prezime">
-                            <Form.Label>Prezime</Form.Label>
+                                defaultValue={radnik.cijenaradnogsata}
+                                name="cijenaRadnogSata"
+                                placeholder='Cijena radnog sata'
+                            />
+                            <span className="input-group-text">€</span>
+                        </div>
+                    </Form.Group>
+                    <Form.Group controlId="koeficijentRadnogMjesta">
+                        <Form.Label>Koeficijent radnog mjesta </Form.Label>
+                        <Form.Control
+                            type="text"
+                            defaultValue={radnik.koeficijentradnogmjesta}
+                            name="koeficijentRadnogMjesta"
+                            placeholder='Koeficijent radnog mjesta'
+
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="osnovniosobniodbitak">
+                        <Form.Label>Osobni osobni odbitak </Form.Label>
+                        <div className="input-group">
                             <Form.Control
                                 type="text"
-                                defaultValue={radnik.prezime}
-                                name="prezime" />
-                        </Form.Group>
-                        <Form.Group controlId="oib">
-                            <Form.Label>OiB</Form.Label>
-                            <Form.Control
-                                type="text"
-                                defaultValue={radnik.oib}
-                                name="oib" />
-                        </Form.Group>
-                        <Form.Group controlId="datumzaposlenja">
-                            <Form.Label>DatumZaposlenja</Form.Label>
-                            <Form.Control
-                                type="date"
-                                defaultValue={radnik.datumzaposlenja}
-                                name="datumzaposlenja" />
-                        </Form.Group>
-                        <Form.Group controlId="iban">
-                            <Form.Label>Iban</Form.Label>
-                            <Form.Control
-                                type="text"
-                                defaultValue={radnik.iban}
-                                name="iban" />
-                        </Form.Group>
-                        <Form.Group controlId="cijenaRadnogSata">
-                            <Form.Label>Cijena radnog sata</Form.Label>
-                            <div className="input-group">
-                                <Form.Control
-                                    type="text"
-                                    defaultValue={radnik.cijenaradnogsata}
-                                    name="cijenaRadnogSata"
-                                    placeholder='Cijena radnog sata'
-                                />
-                                <span className="input-group-text">€</span>
-                            </div>
-                        </Form.Group>
-                        <Form.Group controlId="koeficijentRadnogMjesta">
-                            <Form.Label>Koeficijent radnog mjesta </Form.Label>
-                            <Form.Control
-                                type="text"
-                                defaultValue={radnik.koeficijentradnogmjesta}
-                                name="koeficijentRadnogMjesta"
-                                placeholder='Koeficijent radnog mjesta'
+                                defaultValue={radnik.osnovniosobniodbitak}
+                                name="osnovniosobniodbitak"
+                                placeholder='Osobni osobni odbitak'
 
                             />
-                        </Form.Group>
-                        <Form.Group controlId="osnovniosobniodbitak">
-                            <Form.Label>Osobni osobni odbitak </Form.Label>
-                            <div className="input-group">
-                                <Form.Control
-                                    type="text"
-                                    defaultValue={radnik.osnovniosobniodbitak}
-                                    name="osnovniosobniodbitak"
-                                    placeholder='Osobni osobni odbitak'
-
-                                />
-                                <span className="input-group-text">€</span>
-                            </div>
-                        </Form.Group>
-                        <Row className="akcije">
-                            <Col>
-                                <Link
-                                    className="btn btn-danger"
-                                    to={RoutesNames.RADNICI_PREGLED}>
-                                    <RiArrowGoBackFill size={15} />
-                                    Odustani
-                                </Link>
-                            </Col>
-                            <Col>
-                                <Button
-                                    variant="primary"
-                                    type="submit">
-                                    <RiArrowGoForwardFill size={15} />
-                                    Promjeni radnika
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                            <span className="input-group-text">€</span>
+                        </div>
+                    </Form.Group>
+                    <Row className="akcije">
+                        <Col>
+                            <Link
+                                className="btn btn-danger"
+                                to={RoutesNames.RADNICI_PREGLED}>
+                                <RiArrowGoBackFill size={15} />
+                                Odustani
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Button
+                                variant="primary"
+                                type="submit">
+                                <RiArrowGoForwardFill size={15} />
+                                Promjeni radnika
+                            </Button>
+                        </Col>
+                    </Row>
+                </Form>
 
             </Row>
         </Container>
