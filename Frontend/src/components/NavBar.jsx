@@ -28,7 +28,6 @@ function NavBar() {
         {isLoggedIn ? (
           <>
         
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Plaće" id="basic-nav-dropdown">
