@@ -10,6 +10,8 @@ import RadnikService from "../../services/RadnikService";
 import ObracunskoRazdobljeService from "../../services/ObracunskoRazdobljeService";
 import { RoutesNames } from '../../constants';
 import PlacaService from '../../services/PlacaService';
+import { RiArrowGoBackFill } from 'react-icons/ri';
+import { PiMathOperations } from 'react-icons/pi';
 
 
 
@@ -66,7 +68,7 @@ export default function PlacaDodaj() {
     const odgovor = await PlacaService.dodaj(e);
     if (odgovor.ok) {
       navigate(RoutesNames.PLACA_PREGLED);
-      } else {
+    } else {
       alert(odgovor.poruka.errors);
     }
 
@@ -105,12 +107,12 @@ export default function PlacaDodaj() {
       podacizaobracunSifra: parseInt(podaci.get('podacizaobracune')),
       //datumobracuna:datumobracuna,
       brutoI: 0,//parseFloat(podaci.get('brutoI')),
-      brutoII:0,// parseFloat(podaci.get('brutoII')),
-      poreznaosnovicaporezanadohodak:0,// parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
-      osnovniosobniodbitak:0,// parseFloat(podaci.get('osnovniOsobniOdbitak')),
-      udiozaprvimirovinskistup:0,// parseFloat(podaci.get('udiozaprvimirovinskistup')),
-      udiozadrugimirovinskistup:0,// parseFloat(podaci.get('udiozadrugimirovinskistup')),
-      netoiznoszaisplatu:0,// parseFloat(podaci.get('netoiznoszaisplatu')),
+      brutoII: 0,// parseFloat(podaci.get('brutoII')),
+      poreznaosnovicaporezanadohodak: 0,// parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
+      osnovniosobniodbitak: 0,// parseFloat(podaci.get('osnovniOsobniOdbitak')),
+      udiozaprvimirovinskistup: 0,// parseFloat(podaci.get('udiozaprvimirovinskistup')),
+      udiozadrugimirovinskistup: 0,// parseFloat(podaci.get('udiozadrugimirovinskistup')),
+      netoiznoszaisplatu: 0,// parseFloat(podaci.get('netoiznoszaisplatu')),
     });
   }
 
@@ -118,7 +120,7 @@ export default function PlacaDodaj() {
   return (
     <Container className='mt-4'>
       <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="naziv">
+        <Form.Group controlId="naziv">
           <Form.Label>Naziv</Form.Label>
           <Form.Control
             type="text"
@@ -132,7 +134,7 @@ export default function PlacaDodaj() {
           <Form.Select name='nazivplace' onChange={(e) => { setObracunskaRazdobljaSifra(e.target.value) }}>
             {obracunskaRazdoblja && obracunskaRazdoblja.map((placa, index) => (
               <option key={index} value={placa.sifra}>
-                {placa.nazivplace} 
+                {placa.nazivplace}
               </option>
             ))}
           </Form.Select>
@@ -230,12 +232,19 @@ export default function PlacaDodaj() {
 
         <Row>
           <Col>
-            <Link className='btn btn-danger gumb' to={RoutesNames.PLACA_PREGLED}>
+            <Link
+              className="btn btn-danger"
+              to={RoutesNames.PLACA_PREGLED}>
+              <RiArrowGoBackFill size={15} />
               Odustani
             </Link>
           </Col>
           <Col>
-            <Button variant='primary' className='gumb' type='submit'>
+            <Button
+              variant='primary'
+              type='submit'>
+              <PiMathOperations size={15} />
+
               Dodaj plaću
             </Button>
           </Col>

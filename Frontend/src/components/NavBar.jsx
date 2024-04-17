@@ -17,6 +17,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Brand
           className='linkPocetna'
           onClick={() => navigate(RoutesNames.HOME)}
