@@ -44,7 +44,6 @@ namespace WebApi_ZavrsniRad.Models
     public record ObracunDTOInsertUpdate(int sifra, string naziv, int? radnikSifra, int? podacizaobracunSifra, int? placaSifra,
        decimal brutoI, decimal dohodak, decimal poreznaosnovicaporezanadohodak, decimal osnovniosobniodbitak,
        decimal iznoszaprvimirovinskistup, decimal iznoszadrugimirovinskistup, decimal netoiznoszaisplatu, decimal iznosporezanadohodak);
-    public record SlikaDTO([Required(ErrorMessage = "Base64 zapis slike obavezno")] string Base64);
 
     public record OperaterDTO(
     [Required(ErrorMessage = "Email obavezno")]

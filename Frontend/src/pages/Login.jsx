@@ -18,6 +18,13 @@ export default function Login() {
 
   return (
     <Container className='mt-4'>
+      <tr>
+      Email: edunova@edunova.hr
+      </tr>
+      <tr>
+      Lozimka: admin
+      </tr>
+
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email</Form.Label>

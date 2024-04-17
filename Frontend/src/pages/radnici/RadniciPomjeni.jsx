@@ -106,7 +106,6 @@ export default function RadniciPomjeni() {
     return (
         <Container>
             <Row>
-                <Col key='1' sm={12} lg={6} md={6}>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="ime">
                             <Form.Label>Ime</Form.Label>
@@ -197,52 +196,6 @@ export default function RadniciPomjeni() {
                             </Col>
                         </Row>
                     </Form>
-                    <Row className='mb-4'>
-                        <Col key='1' sm={12} lg={6} md={12}>
-                            <p className='form-label'>Trenutna slika</p>
-                            <Image
-                                //za lokalni development
-                                //src={'https://edunovawp1.eu/' + trenutnaSlika}
-                                src={trenutnaSlika}
-                                className='slika'
-                            />
-                        </Col>
-                        <Col key='2' sm={12} lg={6} md={12}>
-                            {slikaZaServer && (
-                                <>
-                                    <p className='form-label'>Nova slika</p>
-                                    <Image
-                                        src={slikaZaServer || slikaZaCrop}
-                                        className='slika'
-                                    />
-                                </>
-                            )}
-                        </Col>
-                    </Row>
-                </Col>
-                <Col key='2' sm={12} lg={6} md={6}>
-                    <input className='mb-3' type='file' onChange={onChangeImage} />
-                    <Button disabled={!slikaZaServer} onClick={spremiSliku}>
-                        Spremi sliku
-                    </Button>
-
-                    <Cropper
-                        src={slikaZaCrop}
-                        style={{ height: 400, width: '100%' }}
-                        initialAspectRatio={1}
-                        guides={true}
-                        viewMode={1}
-                        minCropBoxWidth={50}
-                        minCropBoxHeight={50}
-                        cropBoxResizable={false}
-                        background={false}
-                        responsive={true}
-                        checkOrientation={false}
-                        cropstart={onCrop}
-                        cropend={onCrop}
-                        ref={cropperRef}
-                    />
-                </Col>
 
             </Row>
         </Container>

@@ -7,7 +7,7 @@ using WebApi_ZavrsniRad.Models;
 namespace WebApi_ZavrsniRad.Controllers
 {
     /// <summary>
-    /// Namjenjeno za CRUD operacije nad entitetm radnik u bazi
+    /// Namjenjeno za CRUD operacije nad entitetm Place u bazi
     /// </summary>
 
     [ApiController]
@@ -19,23 +19,14 @@ namespace WebApi_ZavrsniRad.Controllers
         /// </summary>
         private readonly ObracunPlacaContext _context;
         /// <summary>
-        /// Konstruktor klase koja prima Radnik kontext pomoću DI principa
+        /// Konstruktor klase koja prima Placa kontext pomoću DI principa
         /// </summary>
         /// <param name="context"></param>
         public PlacaController(ObracunPlacaContext context)
         {
             _context = context;
         }
-        /// <summary>
-        /// Dohvaća sve radnike iz baze
-        /// </summary>
-        /// <remarks>
-        /// Primjer upita
-        ///     Get api/v1/Radnik
-        /// </remarks>
-        /// <returns> Radnici u bazi </returns>
-        /// <response code="200">Sve OK </response>
-        /// <response code="400">Zahtjev nije valjan</response>
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -85,18 +76,6 @@ namespace WebApi_ZavrsniRad.Controllers
         }
 
 
-        /// <summary>
-        /// Dodaje novog radnika u bazu
-        /// </summary>
-        /// <remarks>
-        ///     POST api/v1/Smjer
-        ///     {naziv: "Primjer radnika"}
-        /// </remarks>
-        /// <param name="radnik">Smjer za unijeti u JSON formatu</param>
-        /// <response code="201">Kreirano</response>
-        /// <response code="400">Zahtjev nije valjan (BadRequest)</response> 
-        /// <response code="503">Baza nedostupna iz razno raznih razloga</response> 
-        /// <returns>Smjer s šifrom koju je dala baza</returns>
         [HttpPost]
         public IActionResult Post(PlacaDTOInsertUpdate entitet)
         {
@@ -117,31 +96,6 @@ namespace WebApi_ZavrsniRad.Controllers
                     ex.Message);
             }
         }
-        /// <summary>
-        /// Mijenja podatke postojećeg radnika u bazi
-        /// </summary>
-        /// <remarks>
-        /// Primjer upita:
-        ///
-        ///    PUT api/v1/radnik/1
-        ///
-        /// {
-        ///  "sifra": 0,
-        ///  "ime": "Novo ime",
-        ///  "prezime": "Novo prezime",
-        ///  "Datum zaposlenja": 01.01.2022.,
-        ///  "OiB": "74203150129",
-        ///  "Iban ": "HR"
-        /// }
-        ///
-        /// </remarks>
-        /// <param name="sifra">Šifra smjera koji se mijenja</param>  
-        /// <param name="smjer">Smjer za unijeti u JSON formatu</param>  
-        /// <returns>Svi poslani podaci od smjera koji su spremljeni u bazi</returns>
-        /// <response code="200">Sve je u redu</response>
-        /// <response code="204">Nema u bazi smjera kojeg želimo promijeniti</response>
-        /// <response code="415">Nismo poslali JSON</response> 
-        /// <response code="503">Baza nedostupna</response> 
 
         [HttpPut]
         [Route("{sifra:int}")]
