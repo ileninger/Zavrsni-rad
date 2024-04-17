@@ -86,9 +86,9 @@ export default function PlacaPomjeni() {
 
   async function promjeniPlacu(placa) {
     showLoading();
-    const odgovor = await PlacaPomjeni.promjeni(routeParams.sifra, placa);
+    const odgovor = await PlacaService.promjeni(routeParams.sifra, placa);
     if (odgovor.ok) {
-      navigate(RoutesNames.RADNICI_PREGLED);
+      navigate(RoutesNames.PLACA_PREGLED);
     } else {
       console.log(odgovor);
       alert(odgovor.poruka);
@@ -106,7 +106,6 @@ export default function PlacaPomjeni() {
       placaSifra: parseInt(podaci.get('nazivplace')),
       radnikSifra: parseInt(podaci.get('radnik')),
       podacizaobracunSifra: parseInt(podaci.get('podacizaobracune')),
-      //datumobracuna:datumobracuna,
       brutoI: parseFloat(podaci.get('brutoI')),
       dohodak: parseFloat(podaci.get('dohodak')),
       poreznaosnovicaporezanadohodak: parseFloat(podaci.get('poreznaosnovicaporezanadohodak')),
@@ -118,7 +117,7 @@ export default function PlacaPomjeni() {
     };
 
     //console.log(JSON.stringify(smjer));
-    promjeniRadnika(placa);
+    promjeniPlacu(placa);
   }
 
 
@@ -166,103 +165,6 @@ export default function PlacaPomjeni() {
               </option>
             ))}
           </Form.Select>
-        </Form.Group>
-
-        <Form.Group controlId="brutoI">
-          <Form.Label>Bruto I.</Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="brutoI"
-              defaultValue={placa.brutoI}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="dohodak">
-          <Form.Label>Dohodak</Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="dohodak"
-              defaultValue={placa.dohodak}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="poreznaosnovicaporezanadohodak">
-          <Form.Label>Iznos porezne osnovnice poreza na dohodak</Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="poreznaosnovicaporezanadohodak"
-              defaultValue={placa.poreznaosnovicaporezanadohodak}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="osnovniOsobniOdbitak">
-          <Form.Label>Iznos osnovnog osobnog odbitka </Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="osnovniOsobniOdbitak"
-              defaultValue={placa.osnovniosobniodbitak}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="udiozaprvimirovinskistup">
-          <Form.Label>Iznos koji se iz plače isplačuje za prvi mirovinski stup </Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="udiozaprvimirovinskistup"
-              defaultValue={placa.iznoszaprvimirovinskistup}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="udiozadrugimirovinskistup">
-          <Form.Label>Iznos koji se iz plače isplačuje za drugi mirovinski stup </Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="udiozadrugimirovinskistup"
-              defaultValue={placa.iznoszadrugimirovinskistup}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-        <Form.Group controlId="iznosporezanadohodak">
-          <Form.Label>Iznos poreza na dohodak </Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="iznosporezanadohodak"
-              defaultValue={placa.iznosporezanadohodak}
-            />
-            <span className="input-group-text">€</span>
-          </div>
-        </Form.Group>
-
-
-        <Form.Group controlId="netoiznoszaisplatu">
-          <Form.Label>Iznos koji se isplačuje radniku'</Form.Label>
-          <div className="input-group">
-            <Form.Control
-              type="text"
-              name="netoiznoszaisplatu"
-              defaultValue={placa.netoiznoszaisplatu}
-            />
-            <span className="input-group-text">€</span>
-          </div>
         </Form.Group>
 
 

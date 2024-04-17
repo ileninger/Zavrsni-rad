@@ -59,18 +59,17 @@ async function obrisi(sifra) {
   }
 
 
-  async function promjeni(sifra, entitet) {
-    const odgovor = await httpService
-      .put('/'+naziv+'/' + sifra, entitet)
-      .then(() => {
-        return { ok: true, poruka: 'Promjenio' };
-      })
-      .catch((error) => {
-        return { ok: false, poruka: error.response.data };
-      });
-  
+  async function promjeni(sifra,placa){
+    const odgovor = await httpService.put('/Obracun/'+sifra,placa)
+    .then(()=>{
+        return {ok: true, poruka: 'Uspješno promjnjeno'}
+    })
+    .catch((e)=>{
+        console.log(e.response.data.errors);
+        return {ok: false, poruka: 'Greška'}
+    });
     return odgovor;
-  }
+}
 
 
 export default{
