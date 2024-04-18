@@ -29,6 +29,7 @@ import PlacaDetaljnije from "./pages/placa/PlacaDetaljnije"
 
 import Login from "./pages/Login"
 import useAuth from "./hooks/useAuth"
+import LoadingSpinner from "./components/LoadingSpinner"
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <>
+      <LoadingSpinner/>
       <NavBar />
       <Routes>
       <Route path={RoutesNames.HOME} element={<Pocetna />} />
